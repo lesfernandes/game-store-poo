@@ -1,4 +1,4 @@
-package gamestore.mvc.model;
+package gamestore.mvc.model.pojo;
 
 public class Acessorio extends Produto{
 	

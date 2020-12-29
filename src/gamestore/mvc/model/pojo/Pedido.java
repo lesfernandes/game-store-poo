@@ -1,10 +1,12 @@
-package gamestore.mvc.model;
+package gamestore.mvc.model.pojo;
 
-public class Compra {
+import java.util.List;
+
+public class Pedido {
 	
 	private String data;
 	private String outrasInformacoes;
-	private Produto produto;
+	private List<Produto> produtos;
 	private Cliente cliente;
 	
 	public String getData() {
@@ -23,14 +25,14 @@ public class Compra {
 		this.outrasInformacoes = outrasInformacoes;
 	}
 	
-	public Produto getProduto() {
-		return produto;
+	public List<Produto> getProdutos() {
+		return produtos;
 	}
-	
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
-	
+
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -38,4 +40,5 @@ public class Compra {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	
 }
