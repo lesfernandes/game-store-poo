@@ -10,24 +10,27 @@ public class Produto {
 		return nome;
 	}
 	
-	public void setNome(String nome) {
+	public Produto setNome(String nome) {
 		this.nome = nome;
+		return this;
 	}
 	
 	public String getDescricao() {
 		return descricao;
 	}
 	
-	public void setDescricao(String descricao) {
+	public Produto setDescricao(String descricao) {
 		this.descricao = descricao;
+		return this;
 	}
 	
 	public double getPreco() {
 		return preco;
 	}
 	
-	public void setPreco(double preco) {
+	public Produto setPreco(double preco) {
 		this.preco = preco;
+		return this;
 	}
 	
 	

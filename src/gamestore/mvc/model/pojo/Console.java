@@ -9,16 +9,18 @@ public class Console extends Produto {
 		return tipoDrive;
 	}
 	
-	public void setTipoDrive(String tipoDrive) {
+	public Console setTipoDrive(String tipoDrive) {
 		this.tipoDrive = tipoDrive;
+		return this;
 	}
 	
 	public String getOutrasInformacoes() {
 		return outrasInformacoes;
 	}
 	
-	public void setOutrasInformacoes(String outrasInformacoes) {
+	public Console setOutrasInformacoes(String outrasInformacoes) {
 		this.outrasInformacoes = outrasInformacoes;
+		return this;
 	}
 	
 }

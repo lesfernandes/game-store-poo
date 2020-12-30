@@ -11,32 +11,36 @@ public class Jogo extends Produto {
 		return nome;
 	}
 	
-	public void setNome(String nome) {
+	public Jogo setNome(String nome) {
 		this.nome = nome;
+		return this;
 	}
 	
 	public int getMemoriaNecessaria() {
 		return memoriaNecessaria;
 	}
 	
-	public void setMemoriaNecessaria(int memoriaNecessaria) {
+	public Jogo setMemoriaNecessaria(int memoriaNecessaria) {
 		this.memoriaNecessaria = memoriaNecessaria;
+		return this;
 	}
 	
 	public int getNumeroDeJogadores() {
 		return numeroDeJogadores;
 	}
 	
-	public void setNumeroDeJogadores(int numeroDeJogadores) {
+	public Jogo setNumeroDeJogadores(int numeroDeJogadores) {
 		this.numeroDeJogadores = numeroDeJogadores;
+		return this;
 	}
 	
 	public String getOutrasInformacoes() {
 		return outrasInformacoes;
 	}
 	
-	public void setOutrasInformacoes(String outrasInformacoes) {
+	public Jogo setOutrasInformacoes(String outrasInformacoes) {
 		this.outrasInformacoes = outrasInformacoes;
+		return this;
 	}
 	
 	

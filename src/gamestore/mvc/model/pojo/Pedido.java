@@ -13,32 +13,36 @@ public class Pedido {
 		return data;
 	}
 	
-	public void setData(String data) {
+	public Pedido setData(String data) {
 		this.data = data;
+		return this;
 	}
 	
 	public String getOutrasInformacoes() {
 		return outrasInformacoes;
 	}
 	
-	public void setOutrasInformacoes(String outrasInformacoes) {
+	public Pedido setOutrasInformacoes(String outrasInformacoes) {
 		this.outrasInformacoes = outrasInformacoes;
+		return this;
 	}
 	
 	public List<Produto> getProdutos() {
 		return produtos;
 	}
 
-	public void setProdutos(List<Produto> produtos) {
+	public Pedido setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
+		return this;
 	}
 
 	public Cliente getCliente() {
 		return cliente;
 	}
 	
-	public void setCliente(Cliente cliente) {
+	public Pedido setCliente(Cliente cliente) {
 		this.cliente = cliente;
+		return this;
 	}
 	
 }

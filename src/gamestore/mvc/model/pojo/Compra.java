@@ -13,31 +13,35 @@ public class Compra {
 		return data;
 	}
 	
-	public void setData(String data) {
+	public Compra setData(String data) {
 		this.data = data;
+		return this;
 	}
 	
 	public String getOutrasInformacoes() {
 		return outrasInformacoes;
 	}
 	
-	public void setOutrasInformacoes(String outrasInformacoes) {
+	public Compra setOutrasInformacoes(String outrasInformacoes) {
 		this.outrasInformacoes = outrasInformacoes;
+		return this;
 	}
 	
 	public List<Produto> getProduto() {
 		return produto;
 	}
 
-	public void setProduto(List<Produto> produto) {
+	public Compra setProduto(List<Produto> produto) {
 		this.produto = produto;
+		return this;
 	}
 
 	public Cliente getCliente() {
 		return cliente;
 	}
 	
-	public void setCliente(Cliente cliente) {
+	public Compra setCliente(Cliente cliente) {
 		this.cliente = cliente;
+		return this;
 	}
 }
