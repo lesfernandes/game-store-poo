@@ -68,7 +68,7 @@ ENGINE = InnoDB;
 -- Table `gamestore`.`acessorios`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gamestore`.`acessorios` (
-  `acessorio_id` INT ZEROFILL NOT NULL,
+  `acessorio_id` INT AUTO_INCREMENT NOT NULL,
   `outras_informacoes` VARCHAR(255) NULL,
   `produto_id` INT NULL,
   PRIMARY KEY (`acessorio_id`),
