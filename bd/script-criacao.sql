@@ -41,8 +41,8 @@ CREATE TABLE IF NOT EXISTS `gamestore`.`jogos` (
   CONSTRAINT `fk_produto_jogos_id`
     FOREIGN KEY (`produto_id`)
     REFERENCES `gamestore`.`produtos` (`produto_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -59,8 +59,8 @@ CREATE TABLE IF NOT EXISTS `gamestore`.`consoles` (
   CONSTRAINT `fk_produto_console_id`
     FOREIGN KEY (`produto_id`)
     REFERENCES `gamestore`.`produtos` (`produto_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -76,8 +76,8 @@ CREATE TABLE IF NOT EXISTS `gamestore`.`acessorios` (
   CONSTRAINT `fk_produto_acessorios_id`
     FOREIGN KEY (`produto_id`)
     REFERENCES `gamestore`.`produtos` (`produto_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -114,8 +114,8 @@ CREATE TABLE IF NOT EXISTS `gamestore`.`pedidos` (
   CONSTRAINT `fk_cliente_pedidos_id`
     FOREIGN KEY (`cliente_id`)
     REFERENCES `gamestore`.`clientes` (`cliente_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL)
 ENGINE = InnoDB;
 
 
@@ -139,8 +139,8 @@ CREATE TABLE IF NOT EXISTS `gamestore`.`compras` (
   CONSTRAINT `fk_cliente_compras_id`
     FOREIGN KEY (`cliente_id`)
     REFERENCES `gamestore`.`clientes` (`cliente_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL)
 ENGINE = InnoDB;
 
 
