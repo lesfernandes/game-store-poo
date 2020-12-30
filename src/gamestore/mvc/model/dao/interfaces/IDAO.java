@@ -7,9 +7,9 @@ public interface IDAO<T> {
     
     List<T> getAll();
     
-    T save(T t);
+    boolean save(T t);
     
-    T update(T t);
+    boolean update(T t);
     
-    int delete(T t);
+    boolean delete(T t);
 }
