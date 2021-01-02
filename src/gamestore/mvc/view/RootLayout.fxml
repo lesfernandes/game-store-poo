@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox>
+         <children>
+            <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Página" BorderPane.alignment="TOP_LEFT">
+              <items>
+                  <MenuItem mnemonicParsing="false" text="Acessórios" />
+                  <MenuItem mnemonicParsing="false" text="Clientes" />
+                  <MenuItem mnemonicParsing="false" text="Compras" />
+                <MenuItem mnemonicParsing="false" text="Consoles" />
+                <MenuItem mnemonicParsing="false" text="Jogos" />
+                  <MenuItem mnemonicParsing="false" text="Pedidos" />
+                  <MenuItem mnemonicParsing="false" text="Produtos" />
+              </items>
+               <BorderPane.margin>
+                  <Insets left="5.0" top="5.0" />
+               </BorderPane.margin>
+            </MenuButton>
+            <HBox alignment="TOP_RIGHT" prefHeight="0.0" prefWidth="523.0" spacing="5.0">
+               <children>
+                  <Button mnemonicParsing="false" text="Salvar" />
+                  <Button mnemonicParsing="false" text="Salvar como..." />
+               </children>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets left="5.0" top="5.0" />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+</BorderPane>

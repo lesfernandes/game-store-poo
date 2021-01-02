@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="184.0" prefWidth="450.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <HBox alignment="BOTTOM_RIGHT" layoutX="-1.0" prefHeight="182.0" prefWidth="450.0" spacing="5.0">
+         <children>
+            <Button mnemonicParsing="false" text="Cancelar" />
+            <Button mnemonicParsing="false" text="Salvar" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" right="5.0" />
+         </padding>
+      </HBox>
+      <GridPane layoutX="15.0" layoutY="14.0" prefHeight="133.0" prefWidth="421.0">
+         <children>
+            <Label text="Código da compra" />
+            <Label text="Data" GridPane.rowIndex="1" />
+            <Label text="Outras informações" GridPane.rowIndex="2" />
+            <TextField GridPane.columnIndex="1" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Código do produto" GridPane.rowIndex="3" />
+            <TextField prefHeight="19.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="Código do cliente" GridPane.rowIndex="4" />
+            <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.0" minWidth="10.0" prefWidth="118.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="324.0" minWidth="10.0" prefWidth="303.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+   </children>
+</AnchorPane>
