@@ -2,17 +2,40 @@ package gamestore.mvc.model.pojo;
 
 public class Jogo extends Produto {
 	
-	private String nome;
+	private int jogoId;
 	private int memoriaNecessaria;
 	private int numeroDeJogadores;
 	private String outrasInformacoes;
 	
-	public String getNome() {
-		return nome;
+	
+	public Jogo(int produtoId, String nome, String descricao, float preco, int jogoId, int memoriaNecessaria,
+			int numeroDeJogadores, String outrasInformacoes) {
+		super(produtoId, nome, descricao, preco);
+		this.jogoId = jogoId;
+		this.memoriaNecessaria = memoriaNecessaria;
+		this.numeroDeJogadores = numeroDeJogadores;
+		this.outrasInformacoes = outrasInformacoes;
 	}
 	
-	public Jogo setNome(String nome) {
-		this.nome = nome;
+	public Jogo(String nome, String descricao, float preco, int jogoId, int memoriaNecessaria,
+			int numeroDeJogadores, String outrasInformacoes) {
+		super(nome, descricao, preco);
+		this.jogoId = jogoId;
+		this.memoriaNecessaria = memoriaNecessaria;
+		this.numeroDeJogadores = numeroDeJogadores;
+		this.outrasInformacoes = outrasInformacoes;
+	}
+	
+	public Jogo() {
+		
+	}
+
+	public int getJogoId() {
+		return jogoId;
+	}
+
+	public Jogo setJogoId(int jogoId) {
+		this.jogoId = jogoId;
 		return this;
 	}
 	

@@ -11,24 +11,33 @@ import gamestore.mvc.model.dao.factories.MysqlFactory;
 import gamestore.mvc.model.dao.interfaces.IAcessorioDAO;
 import gamestore.mvc.model.pojo.Acessorio;
 
-
 public class MysqlAcessorioDAO implements IAcessorioDAO{
 
-	@Override
+		@Override
 	public Acessorio get(Integer id) {
 		Acessorio acessorio = null;
 		
 		try {
 			Connection con = MysqlFactory.getConnection();
 			
-			String sql = "";
+			String sql = "select * from produtos p inner join acessorios a on a.produto_id = p.produto_id where a.acessorio_id = ?;";
 			
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			// pstmt.setString(1, value);
+			pstmt.setInt(1, id);
 			
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				//rs.getInt(columnIndex)
+				//Produto
+				int produto_id = rs.getInt("produto_id"); 
+				String descricao = rs.getString("descricao");
+				String nome = rs.getString("nome");
+				Float preco = rs.getFloat("preco");
+				//Acessorio
+				int acessorioId = rs.getInt("acessorio_id");
+				String outrasInformacoes = rs.getString("outras_informacoes");
+				
+				acessorio = new Acessorio(produto_id, nome, descricao, preco, acessorioId,
+						outrasInformacoes);
 			}
 			
 			pstmt.close();
@@ -42,19 +51,30 @@ public class MysqlAcessorioDAO implements IAcessorioDAO{
 
 	@Override
 	public List<Acessorio> getAll() {
-		List<Acessorio> acessorio = new LinkedList<Acessorio>();
+		List<Acessorio> acessorios = new LinkedList<Acessorio>();
 		
 		try {
 			Connection con = MysqlFactory.getConnection();
 			
-			String sql = "";
+			String sql = "select * from produtos p inner join acessorios a on a.produto_id = p.produto_id;";
 			
-			PreparedStatement pstmt = con.prepareStatement(sql);	
-			// pstmt.setString(1, value);
+			PreparedStatement pstmt = con.prepareStatement(sql);
 			
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				//rs.getInt(columnIndex)
+				//Produto
+				int produto_id = rs.getInt("produto_id"); 
+				String descricao = rs.getString("descricao");
+				String nome = rs.getString("nome");
+				Float preco = rs.getFloat("preco");
+				//Console
+				int acessorioId = rs.getInt("acessorio_id");
+				String outrasInformacoes = rs.getString("outras_informacoes");
+				
+				Acessorio acessorio = new Acessorio(produto_id, nome, descricao, preco, acessorioId,
+						outrasInformacoes);
+				
+				acessorios.add(acessorio);
 			}
 			
 			pstmt.close();
@@ -63,42 +83,59 @@ public class MysqlAcessorioDAO implements IAcessorioDAO{
 			e.printStackTrace();
 		}
 		
-		return acessorio;
+		return acessorios;
 	}
 
 	@Override
 	public boolean save(Acessorio acessorio) {
 		boolean succesfull = false;
-		
+		Connection con = null;
 		try {
-			Connection con = MysqlFactory.getConnection();
-			con.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
+			con = MysqlFactory.getConnection();
+			con.setAutoCommit(false);
 			
-			String sql = "";
+			String sql = "INSERT INTO `produtos` (`descricao`, `nome`, `preco`) ";
+			sql += "VALUES (?, ?, ?);";
 			
-			PreparedStatement pstmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-			// pstmt.setString(1, value);
-			
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, acessorio.getDescricao());
+			pstmt.setString(2, acessorio.getNome());
+			pstmt.setFloat(3, acessorio.getPreco());
 			pstmt.execute();
 			
-			 ResultSet rs = pstmt.getGeneratedKeys();
-			 int id;
-			 if(rs.next()){
-	            id = rs.getInt(1);
-	        }
+			ResultSet rs = pstmt.executeQuery();
+			int produtoId = 0;
+			while(rs.next()) {
+				produtoId = rs.getInt(0);
+			}
 			
-			sql = "";
-			
+			sql = "INSERT INTO `acessorios` (`outras_informacoes`, `produto_id`) VALUES (?, ?);";
 			pstmt = con.prepareStatement(sql);
-			// pstmt.setString(1, value);
+			pstmt.setString(1, acessorio.getOutrasInformacoes());
+			pstmt.setInt(2, produtoId);
 			succesfull = pstmt.execute();
 			
-			pstmt.close();
+			con.commit();
 			
-			con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+			pstmt.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			if(con != null) {
+				try {
+					con.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
 			e.printStackTrace();
+		}finally {
+			if(con != null) {
+				try {
+					con.setAutoCommit(true);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		
 		return succesfull;
@@ -107,63 +144,50 @@ public class MysqlAcessorioDAO implements IAcessorioDAO{
 	@Override
 	public boolean update(Acessorio t) {
 		boolean succesfull = false;
+		Connection con = null;
 		
 		try {
-			Connection con = MysqlFactory.getConnection();
-			con.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
+			con = MysqlFactory.getConnection();
+			con.setAutoCommit(false);
 			
-			String sql = "";
+			MysqlProdutoDAO produtoDao = new MysqlProdutoDAO();
+			produtoDao.update(t);
 			
-			PreparedStatement pstmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-			// pstmt.setString(1, value);
+			String sql = "UPDATE `acessorios` SET `outras_informacoes` = 'a' WHERE (`acessorio_id` = ?);";
 			
-			pstmt.execute();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, t.getOutrasInformacoes());
+			pstmt.setFloat(2, t.getAcessorioId());
 			
-			 ResultSet rs = pstmt.getGeneratedKeys();
-			 int id;
-			 if(rs.next()){
-	            id = rs.getInt(1);
-	        }
-			
-			sql = "";
-			
-			pstmt = con.prepareStatement(sql);
-			// pstmt.setString(1, value);
 			succesfull = pstmt.execute();
 			
 			pstmt.close();
-			
-			con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			if(con != null) {
+				try {
+					con.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
 			e.printStackTrace();
+		}finally {
+			if(con != null) {
+				try {
+					con.setAutoCommit(true);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		
 		return succesfull;
 	}
 
 	@Override
-	public boolean delete(Acessorio t) {
-		boolean succesfull = false;
-		
-		try {
-			Connection con = MysqlFactory.getConnection();
-			
-			String sql = "";
-			
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			// pstmt.setString(1, value);
-			
-			succesfull = pstmt.execute();
-			
-			pstmt.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return succesfull;
+	public boolean delete(Acessorio c) {
+		MysqlProdutoDAO produtoDao = new MysqlProdutoDAO();
+		return produtoDao.delete(c);
 	}
-
-
+	
 }

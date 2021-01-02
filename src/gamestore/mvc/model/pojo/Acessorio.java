@@ -2,28 +2,37 @@ package gamestore.mvc.model.pojo;
 
 public class Acessorio extends Produto{
 	
-	private String nome;
-	private String descricao;
+
+	public Acessorio(int produtoId, String nome, String descricao, float preco, int acessorioId,
+			String outrasInformacoes) {
+		super(produtoId, nome, descricao, preco);
+		this.acessorioId = acessorioId;
+		this.outrasInformacoes = outrasInformacoes;
+	}
+	
+	public Acessorio(String nome, String descricao, float preco, int acessorioId,
+			String outrasInformacoes) {
+		super(nome, descricao, preco);
+		this.acessorioId = acessorioId;
+		this.outrasInformacoes = outrasInformacoes;
+	}
+	
+	public Acessorio() {
+		
+	}
+
+	private int acessorioId;
 	private String outrasInformacoes;
-	
-	public String getNome() {
-		return nome;
+
+	public int getAcessorioId() {
+		return acessorioId;
 	}
-	
-	public Acessorio setNome(String nome) {
-		this.nome = nome;
+
+	public Acessorio setAcessorioId(int acessorioId) {
+		this.acessorioId = acessorioId;
 		return this;
 	}
-	
-	public String getDescricao() {
-		return descricao;
-	}
-	
-	public Acessorio setDescricao(String descricao) {
-		this.descricao = descricao;
-		return this;
-	}
-	
+		
 	public String getOutrasInformacoes() {
 		return outrasInformacoes;
 	}
