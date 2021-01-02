@@ -19,14 +19,20 @@ public class MysqlClienteDAO implements IClienteDAO{
 		try {
 			Connection con = MysqlFactory.getConnection();
 			
-			String sql = "";
+			String sql = "select * from clientes where cliente_id = ?;";
 			
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			// pstmt.setString(1, value);
+			pstmt.setInt(1, id);
 			
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				//rs.getInt(columnIndex)
+				int clienteId = rs.getInt("cliente_id");
+				int codigo = rs.getInt("codigo");
+				String nome = rs.getString("nome");
+				String endereco = rs.getString("endereco");
+				String outrasInformacoes = rs.getString("outras_informacaoes");
+				
+				cliente = new Cliente(clienteId, codigo, nome, endereco, outrasInformacoes);
 			}
 			
 			pstmt.close();
@@ -40,19 +46,25 @@ public class MysqlClienteDAO implements IClienteDAO{
 
 	@Override
 	public List<Cliente> getAll() {
-		List<Cliente> cliente = new LinkedList<Cliente>();
+		List<Cliente> clientes = new LinkedList<Cliente>();
 		
 		try {
 			Connection con = MysqlFactory.getConnection();
 			
-			String sql = "";
+			String sql = "select * from clientes;";
 			
 			PreparedStatement pstmt = con.prepareStatement(sql);	
-			// pstmt.setString(1, value);
 			
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				//rs.getInt(columnIndex)
+				int clienteId = rs.getInt("cliente_id");
+				int codigo = rs.getInt("codigo");
+				String nome = rs.getString("nome");
+				String endereco = rs.getString("endereco");
+				String outrasInformacoes = rs.getString("outras_informacaoes");
+				
+				Cliente cliente = new Cliente(clienteId, codigo, nome, endereco, outrasInformacoes);
+				clientes.add(cliente);
 			}
 			
 			pstmt.close();
@@ -61,7 +73,7 @@ public class MysqlClienteDAO implements IClienteDAO{
 			e.printStackTrace();
 		}
 		
-		return cliente;
+		return clientes;
 	}
 
 	@Override
@@ -71,10 +83,13 @@ public class MysqlClienteDAO implements IClienteDAO{
 		try {
 			Connection con = MysqlFactory.getConnection();
 			
-			String sql = "";
+			String sql = "INSERT INTO `clientes` (`codigo`, `nome`, `endereco`, `outras_informacaoes`) VALUES (?, ?, ?, ?);";
 			
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			// pstmt.setString(1, value);
+			pstmt.setInt(1, t.getCodigo());
+			pstmt.setString(1, t.getNome());
+			pstmt.setString(1, t.getEndereco());
+			pstmt.setString(1, t.getOutrasInformacoes());
 			
 			succesfull = pstmt.execute();
 			
@@ -94,10 +109,14 @@ public class MysqlClienteDAO implements IClienteDAO{
 		try {
 			Connection con = MysqlFactory.getConnection();
 			
-			String sql = "";
+			String sql = "UPDATE `clientes` SET `codigo` = ?, `nome` = ?, `endereco` = ?, `outras_informacaoes` = ? WHERE (`cliente_id = ?);";
 			
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			// pstmt.setString(1, value);
+			pstmt.setInt(1, t.getCodigo());
+			pstmt.setString(2, t.getNome());
+			pstmt.setString(3, t.getEndereco());
+			pstmt.setString(4, t.getOutrasInformacoes());
+			pstmt.setInt(5, t.getClienteId());
 			
 			succesfull = pstmt.execute();
 			
@@ -117,10 +136,10 @@ public class MysqlClienteDAO implements IClienteDAO{
 		try {
 			Connection con = MysqlFactory.getConnection();
 			
-			String sql = "";
+			String sql = "DELETE FROM `clientes` WHERE (`cliente_id` = ?);";
 			
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			// pstmt.setString(1, value);
+			pstmt.setInt(1, t.getClienteId());
 			
 			succesfull = pstmt.execute();
 			
