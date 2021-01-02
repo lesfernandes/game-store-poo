@@ -6,21 +6,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="150.0" prefWidth="450.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane prefHeight="150.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamestore.mvc.controller.AcessoriosDialogController">
    <children>
       <GridPane layoutX="10.0" layoutY="10.0">
          <children>
-            <Label text="Código do acessório" />
-            <Label text="Nome" GridPane.rowIndex="1" />
-            <Label text="Outras informações" GridPane.rowIndex="3" />
-            <Label text="Descrição" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="Código do produto" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="Nome" />
+            <Label text="Descrição" GridPane.rowIndex="1" />
+            <Label text="Outras Informações" GridPane.rowIndex="3" />
+            <Label text="Preço" GridPane.rowIndex="2" />
+            <TextField fx:id="nomeInput" GridPane.columnIndex="1" />
+            <TextField fx:id="descricaoInput" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="precoInput" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="outrasInformacoesInput" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.0" minWidth="10.0" prefWidth="128.0" />
@@ -36,8 +33,8 @@
       </GridPane>
       <HBox alignment="BOTTOM_RIGHT" layoutX="20.0" layoutY="20.0" prefHeight="174.0" prefWidth="440.0" spacing="5.0">
          <children>
-            <Button mnemonicParsing="false" text="Cancelar" />
-            <Button mnemonicParsing="false" text="Salvar" />
+            <Button fx:id="cancelarBtn" mnemonicParsing="false" text="Cancelar" />
+            <Button fx:id="salvarBtn" mnemonicParsing="false" text="Salvar" />
          </children>
          <padding>
             <Insets bottom="5.0" right="5.0" />
