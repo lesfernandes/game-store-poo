@@ -2,11 +2,43 @@ package gamestore.mvc.model.pojo;
 
 public class Cliente {
 	
+	private int clienteId;
 	private int codigo;
 	private String nome;
 	private String endereco;
 	private String outrasInformacoes;
 	
+	public Cliente(int clienteId, int codigo, String nome, String endereco, String outrasInformacoes) {
+		super();
+		this.clienteId = clienteId;
+		this.codigo = codigo;
+		this.nome = nome;
+		this.endereco = endereco;
+		this.outrasInformacoes = outrasInformacoes;
+	}
+
+
+	public Cliente(int codigo, String nome, String endereco, String outrasInformacoes) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
+		this.endereco = endereco;
+		this.outrasInformacoes = outrasInformacoes;
+	}
+
+
+	public Cliente() {
+	
+	}
+
+	public int getClienteId() {
+		return clienteId;
+	}
+
+	public void setClienteId(int clienteId) {
+		this.clienteId = clienteId;
+	}
+
 	public int getCodigo() {
 		return codigo;
 	}
