@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="rootBorderPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamestore.mvc.controller.MenuController">
    <top>
       <HBox>
          <children>
-            <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Página" BorderPane.alignment="TOP_LEFT">
+            <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="164.0" text="Página" BorderPane.alignment="TOP_LEFT">
               <items>
-                  <MenuItem mnemonicParsing="false" text="Acessórios" />
-                  <MenuItem mnemonicParsing="false" text="Clientes" />
-                  <MenuItem mnemonicParsing="false" text="Compras" />
-                <MenuItem mnemonicParsing="false" text="Consoles" />
-                <MenuItem mnemonicParsing="false" text="Jogos" />
-                  <MenuItem mnemonicParsing="false" text="Pedidos" />
-                  <MenuItem mnemonicParsing="false" text="Produtos" />
+                  <MenuItem onAction="#handleAcessoriosMenu" mnemonicParsing="false" text="Acessórios" />
+                  <MenuItem onAction="#handleClientesMenu" mnemonicParsing="false" text="Clientes" />
+                  <MenuItem  onAction="#handleComprasMenu" mnemonicParsing="false" text="Compras" />
+                <MenuItem onAction="#handleConsolesMenu" mnemonicParsing="false" text="Consoles" />
+                <MenuItem onAction="#handleJogosMenu" mnemonicParsing="false" text="Jogos" />
+                  <MenuItem onAction="#handlePedidosMenu" mnemonicParsing="false" text="Pedidos" />
+                  <MenuItem onAction="#handleProdutosMenu" mnemonicParsing="false" text="Produtos" />
               </items>
                <BorderPane.margin>
                   <Insets left="5.0" top="5.0" />
