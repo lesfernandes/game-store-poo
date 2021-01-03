@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -38,7 +37,7 @@ public class MysqlPedidoDAO implements IPedidoDAO {
 			while(rs.next()) {
 				//Pedido
 				int pedidoId = rs.getInt("pedido_id");
-				LocalDate data = rs.getDate("data").toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				LocalDate data = rs.getDate("data").toLocalDate();
 				String outrasInformacoesProduto = rs.getString("outras_informacoes");
 
 				//Cliente
@@ -87,7 +86,7 @@ public class MysqlPedidoDAO implements IPedidoDAO {
 			while(rs.next()) {
 				//Pedido
 				int pedidoId = rs.getInt("pedido_id");
-				LocalDate data = rs.getDate("data").toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				LocalDate data = rs.getDate("data").toLocalDate();
 				String outrasInformacoesProduto = rs.getString("outras_informacoes");
 
 				//Cliente

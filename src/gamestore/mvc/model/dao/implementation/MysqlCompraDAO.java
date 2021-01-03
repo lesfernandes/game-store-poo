@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class MysqlCompraDAO implements ICompraDAO {
 			while(rs.next()) {
 				//Compra
 				int compraId = rs.getInt("compra_id");
-				LocalDate data = rs.getDate("data").toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				LocalDate data = rs.getDate("data").toLocalDate();
 				String outrasInformacoesCompra = rs.getString("outras_informacoes");
 
 				//Cliente
@@ -83,7 +82,7 @@ public class MysqlCompraDAO implements ICompraDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				//Compra
-				LocalDate data = rs.getDate("data").toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				LocalDate data = rs.getDate("data").toLocalDate();
 				String outrasInformacoesCompra = rs.getString("outras_informacoes");
 
 				//Cliente
