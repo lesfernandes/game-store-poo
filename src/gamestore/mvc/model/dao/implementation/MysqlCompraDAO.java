@@ -32,6 +32,7 @@ public class MysqlCompraDAO implements ICompraDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				//Compra
+				int compraId = rs.getInt("compra_id");
 				Date data = rs.getDate("data");
 				String outrasInformacoesCompra = rs.getString("outras_informacoes");
 
@@ -52,7 +53,7 @@ public class MysqlCompraDAO implements ICompraDAO {
 
 				Produto produto = new Produto(produto_id, nomeProduto, descricao, preco);
 
-				compra = new Compra(data, outrasInformacoesCompra, produto, cliente);
+				compra = new Compra(compraId ,data, outrasInformacoesCompra, produto, cliente);
 			}
 
 			pstmt.close();

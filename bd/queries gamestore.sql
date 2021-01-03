@@ -112,7 +112,7 @@ select * from produtos p inner join consoles c on c.produto_id = p.produto_id wh
 
 select * from produtos p inner join consoles c on c.produto_id = p.produto_id where c.outras_informacoes = 'MEME';
 
-select * from produtos p inner join acessorios a on a.produto_id = p.produto_id where a.acessorio_id = 2;
+select * from produtos p inner join acessorios a on a.produto_id = p.produto_id; -- where a.acessorio_id = 2;
 
 select * from produtos p inner join acessorios a on a.produto_id = p.produto_id where a.outras_informacoes = 'MEME';
 
@@ -153,4 +153,12 @@ where cm.cliente_id = 1;
 select * from produtos;
 drop table produtos;
 
-select * from compras inner join produtos on compras.produto_id = produtos.produto_id inner join clientes on clientes.cliente_id = compras.cliente_id where compras.compra_id = 1;
+select * from compras 
+inner join produtos on compras.produto_id = produtos.produto_id 
+inner join clientes on clientes.cliente_id = compras.cliente_id 
+where compras.compra_id = 1;
+
+select * from pedidos 
+inner join produtos on pedidos.produto_id = produtos.produto_id 
+inner join clientes on clientes.cliente_id = compras.cliente_id 
+where pedidos.pedido_id = 1;

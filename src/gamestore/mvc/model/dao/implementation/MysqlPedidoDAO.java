@@ -4,32 +4,56 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import gamestore.mvc.model.dao.factories.MysqlFactory;
-import gamestore.mvc.model.dao.interfaces.*;
+import gamestore.mvc.model.dao.interfaces.IPedidoDAO;
+import gamestore.mvc.model.pojo.Cliente;
 import gamestore.mvc.model.pojo.Pedido;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import gamestore.mvc.model.pojo.Produto;
 
 public class MysqlPedidoDAO implements IPedidoDAO {
 
 	@Override
 	public Pedido get(Integer id) {
 		Pedido pedido = null;
-
 		try {
 			Connection con = MysqlFactory.getConnection();
 
-			String sql = "";
+
+			String sql = "select * from compras inner join produtos on compras.produto_id = produtos.produto_id inner join clientes on clientes.cliente_id = compras.cliente_id where compras.compra_id = ?;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			// pstmt.setString(1, value);
+			pstmt.setInt(1, id);
+
 
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				//rs.getInt(columnIndex)
+				//Pedido
+				int pedidoId = rs.getInt("pedido_id");
+				Date data = rs.getDate("data");
+				String outrasInformacoesProduto = rs.getString("outras_informacoes");
+
+				//Cliente
+				int clienteId = rs.getInt("cliente_id");
+				int codigo = rs.getInt("codigo");
+				String nomeCliente = rs.getString("nome");
+				String endereco = rs.getString("endereco");
+				String outrasInformacoesCliente = rs.getString("outras_informacaoes");
+
+				Cliente cliente = new Cliente(clienteId, codigo, nomeCliente, endereco, outrasInformacoesCliente);
+
+				//Produto
+				int produto_id = rs.getInt("produto_id");
+				String descricao = rs.getString("descricao");
+				String nomeProduto = rs.getString("nome");
+				Float preco = rs.getFloat("preco");
+
+				Produto produto = new Produto(produto_id, nomeProduto, descricao, preco);
+
+				pedido = new Pedido(pedidoId, data, outrasInformacoesProduto, produto, cliente);
 			}
 
 			pstmt.close();
@@ -42,20 +66,42 @@ public class MysqlPedidoDAO implements IPedidoDAO {
 	}
 
 	@Override
+
 	public List<Pedido> getAll() {
-		List<Pedido> pedido = new ArrayList<Pedido>(); 
+		List<Pedido> pedidos = new LinkedList<Pedido>();
 
 		try {
 			Connection con = MysqlFactory.getConnection();
 
-			String sql = "";
-
+			String sql = "select * from compras inner join produtos on compras.produto_id = produtos.produto_id inner join clientes on clientes.cliente_id = compras.cliente_id;";
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			// pstmt.setString(1, value);
 
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				//rs.getInt(columnIndex)
+				//Pedido
+				int pedidoId = rs.getInt("pedido_id");
+				Date data = rs.getDate("data");
+				String outrasInformacoesProduto = rs.getString("outras_informacoes");
+
+				//Cliente
+				int clienteId = rs.getInt("cliente_id");
+				int codigo = rs.getInt("codigo");
+				String nomeCliente = rs.getString("nome");
+				String endereco = rs.getString("endereco");
+				String outrasInformacoesCliente = rs.getString("outras_informacaoes");
+
+				Cliente cliente = new Cliente(clienteId, codigo, nomeCliente, endereco, outrasInformacoesCliente);
+
+				//Produto
+				int produto_id = rs.getInt("produto_id");
+				String descricao = rs.getString("descricao");
+				String nomeProduto = rs.getString("nome");
+				Float preco = rs.getFloat("preco");
+
+				Produto produto = new Produto(produto_id, nomeProduto, descricao, preco);
+
+				Pedido pedido = new Pedido(pedidoId, data, outrasInformacoesProduto, produto, cliente);
+				pedidos.add(pedido);
 			}
 
 			pstmt.close();
@@ -64,7 +110,8 @@ public class MysqlPedidoDAO implements IPedidoDAO {
 			e.printStackTrace();
 		}
 
-		return pedido;
+		return pedidos;
+
 	}
 
 	@Override
@@ -74,10 +121,13 @@ public class MysqlPedidoDAO implements IPedidoDAO {
 		try {
 			Connection con = MysqlFactory.getConnection();
 
-			String sql = "";
+			String sql = "INSERT INTO `pedidos` (`data`, `outras_informacoes`, `produto_id`, `cliente_id`) VALUES (?,?,?,?);";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			// pstmt.setString(1, value);
+			pstmt.setDate(1, (java.sql.Date) t.getData());
+			pstmt.setString(2, t.getOutrasInformacoes());
+			pstmt.setInt(3, t.getProduto().getProdutoId());
+			pstmt.setInt(4, t.getCliente().getClienteId());
 
 			succesfull = pstmt.execute();
 
@@ -97,10 +147,12 @@ public class MysqlPedidoDAO implements IPedidoDAO {
 		try {
 			Connection con = MysqlFactory.getConnection();
 
-			String sql = "";
+			String sql = "UPDATE `pedidos` SET `data` = ?, `outras_informacoes` = ?, WHERE (`pedido_id` = ?);";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			// pstmt.setString(1, value);
+			pstmt.setDate(1, (java.sql.Date) t.getData());
+			pstmt.setString(2, t.getOutrasInformacoes());
+			pstmt.setInt(3, t.getPedidoId());
 
 			succesfull = pstmt.execute();
 
@@ -120,10 +172,10 @@ public class MysqlPedidoDAO implements IPedidoDAO {
 		try {
 			Connection con = MysqlFactory.getConnection();
 
-			String sql = "";
+			String sql = "DELETE FROM `pedidos` WHERE (`pedido_id` = ?);";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			// pstmt.setString(1, value);
+			pstmt.setInt(1, t.getPedidoId());
 
 			succesfull = pstmt.execute();
 

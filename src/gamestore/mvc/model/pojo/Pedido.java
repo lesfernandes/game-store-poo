@@ -1,19 +1,51 @@
 package gamestore.mvc.model.pojo;
 
-import java.util.List;
+import java.util.Date;
 
 public class Pedido {
 	
-	private String data;
+	private int pedidoId;
+	private Date data;
 	private String outrasInformacoes;
-	private List<Produto> produtos;
+	private Produto produto;
 	private Cliente cliente;
 	
-	public String getData() {
+	public Pedido(int pedidoId, Date data, String outrasInformacoes, Produto produto, Cliente cliente) {
+		super();
+		this.pedidoId = pedidoId;
+		this.data = data;
+		this.outrasInformacoes = outrasInformacoes;
+		this.produto = produto;
+		this.cliente = cliente;
+	}
+	
+	public Pedido(Date data, String outrasInformacoes, Produto produto, Cliente cliente) {
+		super();
+		this.data = data;
+		this.outrasInformacoes = outrasInformacoes;
+		this.produto = produto;
+		this.cliente = cliente;
+	}
+
+	public Pedido() {
+
+	}
+
+
+	public int getPedidoId() {
+		return pedidoId;
+	}
+
+	public Pedido setPedidoId(int pedidoId) {
+		this.pedidoId = pedidoId;
+		return this;
+	}
+
+	public Date getData() {
 		return data;
 	}
 	
-	public Pedido setData(String data) {
+	public Pedido setData(Date data) {
 		this.data = data;
 		return this;
 	}
@@ -27,12 +59,12 @@ public class Pedido {
 		return this;
 	}
 	
-	public List<Produto> getProdutos() {
-		return produtos;
+	public Produto getProduto() {
+		return produto;
 	}
 
-	public Pedido setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
+	public Pedido setProduto(Produto produto) {
+		this.produto = produto;
 		return this;
 	}
 
