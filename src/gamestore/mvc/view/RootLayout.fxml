@@ -19,7 +19,6 @@
                 <MenuItem onAction="#handleConsolesMenu" mnemonicParsing="false" text="Consoles" />
                 <MenuItem onAction="#handleJogosMenu" mnemonicParsing="false" text="Jogos" />
                   <MenuItem onAction="#handlePedidosMenu" mnemonicParsing="false" text="Pedidos" />
-                  <MenuItem onAction="#handleProdutosMenu" mnemonicParsing="false" text="Produtos" />
               </items>
                <BorderPane.margin>
                   <Insets left="5.0" top="5.0" />

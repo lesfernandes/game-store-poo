@@ -1,4 +1,4 @@
-package gamestore.mvc.controller;
+	package gamestore.mvc.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 
 public class ClientesOverviewController implements Initializable{
@@ -46,32 +47,37 @@ public class ClientesOverviewController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		clienteData = FXCollections.observableArrayList(dao.getAll());
 
+		clienteTable.setRowFactory( tv -> {
+		    TableRow<Cliente> row = new TableRow<>();
+		    row.setOnMouseClicked(event -> {
+		    	Cliente cliente = row.getItem();
+		    	setCurrentCliente(cliente);
+		    });
+		    return row ;
+		});
+
 		codigoColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCodigo()));
 		nomeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNome()));
+
+		clienteTable.setItems(clienteData);
 	}
 
-	private void showClienteDetails(Cliente cliente) {
-	    if (cliente != null) {
-	    	codigoLabel.setText(Integer.toString(cliente.getCodigo()));
-	    	nomeLabel.setText(cliente.getNome());
-	    	enderecoLabel.setText(cliente.getEndereco());
-	    	outrasInformacoesLabel.setText(cliente.getOutrasInformacoes());
-
-	    } else {
-	    	codigoLabel.setText("");
-	    	nomeLabel.setText("");
-	    	enderecoLabel.setText("");
-	    	outrasInformacoesLabel.setText("");
-	    }
+	private void setCurrentCliente(Cliente cliente) {
+    	codigoLabel.setText(Integer.toString(cliente.getCodigo()));
+    	nomeLabel.setText(cliente.getNome());
+    	enderecoLabel.setText(cliente.getEndereco());
+    	outrasInformacoesLabel.setText(cliente.getOutrasInformacoes());
 	}
 
 	/**
-	 * Chamado quando o usuário clica no botão delete.
+	 * Botão delete.
 	 */
 	@FXML
 	private void handleDeleteCliente() {
 	    Cliente cliente = clienteTable.getSelectionModel().getSelectedItem();
+	    clienteTable.getItems().remove(cliente);
 	    dao.delete(cliente);
+
 	}
 
 }
