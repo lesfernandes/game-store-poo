@@ -25,7 +25,10 @@ public class MysqlPedidoDAO implements IPedidoDAO {
 			Connection con = MysqlFactory.getConnection();
 
 
-			String sql = "select * from compras inner join produtos on compras.produto_id = produtos.produto_id inner join clientes on clientes.cliente_id = compras.cliente_id where compras.compra_id = ?;";
+			String sql = "select * from pedidos "
+					+ " inner join produtos on pedidos.produto_id = produtos.produto_id "
+					+ " inner join clientes on clientes.cliente_id = pedidos.cliente_id "
+					+ " where pedidos.pedido_id = ?;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);
@@ -75,7 +78,9 @@ public class MysqlPedidoDAO implements IPedidoDAO {
 		try {
 			Connection con = MysqlFactory.getConnection();
 
-			String sql = "select * from compras inner join produtos on compras.produto_id = produtos.produto_id inner join clientes on clientes.cliente_id = compras.cliente_id;";
+			String sql = "select * from pedidos "
+					+ "inner join produtos on pedidos.produto_id = produtos.produto_id "
+					+ "inner join clientes on clientes.cliente_id = pedidos.cliente_id";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
 			ResultSet rs = pstmt.executeQuery();

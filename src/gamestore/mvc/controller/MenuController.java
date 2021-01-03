@@ -30,7 +30,7 @@ public class MenuController implements Initializable{
     @FXML
     void handleClientesMenu(ActionEvent event) {
     	menuButton.setText("Clientes");
-    	changeView("../view/CLientesOverview.fxml");
+    	changeView("../view/ClientesOverview.fxml");
     }
 
     @FXML
