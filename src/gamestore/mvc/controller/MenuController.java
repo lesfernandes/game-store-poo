@@ -29,32 +29,38 @@ public class MenuController implements Initializable{
 
     @FXML
     void handleClientesMenu(ActionEvent event) {
-
+    	menuButton.setText("Clientes");
+    	changeView("../view/CLientesOverview.fxml");
     }
 
     @FXML
     void handleComprasMenu(ActionEvent event) {
-
+    	menuButton.setText("Compras");
+    	changeView("../view/ComprasOverview.fxml");
     }
 
     @FXML
     void handleConsolesMenu(ActionEvent event) {
-
+    	menuButton.setText("Consoles");
+    	changeView("../view/ConsolesOverview.fxml");
     }
 
     @FXML
     void handleJogosMenu(ActionEvent event) {
-
+    	menuButton.setText("Jogos");
+    	changeView("../view/JogosOverview.fxml");
     }
 
     @FXML
     void handlePedidosMenu(ActionEvent event) {
-
+    	menuButton.setText("Pedidos");
+    	changeView("../view/PedidosOverview.fxml");
     }
 
     @FXML
     void handleProdutosMenu(ActionEvent event) {
-
+    	menuButton.setText("Produtos");
+    	changeView("../view/MenuOverview.fxml");
     }
 
 	@Override

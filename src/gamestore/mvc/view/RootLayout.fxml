@@ -13,7 +13,7 @@
          <children>
             <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="164.0" text="Página" BorderPane.alignment="TOP_LEFT">
               <items>
-                  <MenuItem onAction="#handleAcessoriosMenu" mnemonicParsing="false" text="Acessórios" />
+                  <MenuItem onAction="#handleAcessoriosMenu" mnemonicParsing="false" text="Acessórios"/>
                   <MenuItem onAction="#handleClientesMenu" mnemonicParsing="false" text="Clientes" />
                   <MenuItem  onAction="#handleComprasMenu" mnemonicParsing="false" text="Compras" />
                 <MenuItem onAction="#handleConsolesMenu" mnemonicParsing="false" text="Consoles" />
