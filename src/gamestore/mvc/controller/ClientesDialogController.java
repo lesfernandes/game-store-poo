@@ -35,15 +35,15 @@ public class ClientesDialogController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		salvarBtn.setOnAction((ActionEvent event)->{
-				Cliente cliente = new Cliente(Integer.parseInt(codigoInput.getText()),
-											nomeInput.getText(),
-											enderecoInput.getText(),
-											outrasInformacoesInput.getText());
+			Cliente cliente = new Cliente(Integer.parseInt(codigoInput.getText()),
+										nomeInput.getText(),
+										enderecoInput.getText(),
+										outrasInformacoesInput.getText());
 
-				IClienteDAO dao = new MysqlClienteDAO();
+			IClienteDAO dao = new MysqlClienteDAO();
 
-				dao.save(cliente);
-			});
+			dao.save(cliente);
+		});
 
 	}
 
