@@ -5,19 +5,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="300.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamestore.mvc.controller.AcessoriosOverviewController">
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" layoutX="43.0" layoutY="60.0" prefHeight="460.0" prefWidth="643.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="43.0" layoutY="60.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView layoutY="38.0" prefHeight="298.0" prefWidth="181.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="acessorioTable" layoutY="38.0" prefHeight="298.0" prefWidth="181.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                      <columns>
-                        <TableColumn prefWidth="75.0" text="Código do acessório" />
+                        <TableColumn fx:id="nomeColumn" prefWidth="75.0" text="Nome" />
+                        <TableColumn fx:id="precoColumn" prefWidth="75.0" text="Preco" />
                      </columns>
                   </TableView>
                </children>
@@ -27,10 +27,14 @@
                   <Label layoutX="48.0" layoutY="78.0" text="Detalhes do acessório:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
                   <GridPane layoutX="34.0" layoutY="53.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
                      <children>
-                        <Label text="Código do acessório" />
+                        <Label text="Nome" />
                         <Label text="Descrição" GridPane.rowIndex="1" />
-                        <Label text="Outras informações" GridPane.rowIndex="2" />
-                        <Label text="Código do produto" GridPane.rowIndex="3" />
+                        <Label text="Preço" GridPane.rowIndex="2" />
+                        <Label layoutX="10.0" layoutY="17.0" text="Outras Informações" GridPane.rowIndex="3" />
+                        <Label fx:id="nomeLabel" text="label" GridPane.columnIndex="1" />
+                        <Label fx:id="descricaoLabel" text="label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="precoLabel" text="label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="outrasInformacoesLabel" text="label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

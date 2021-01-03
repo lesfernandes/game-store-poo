@@ -2,6 +2,8 @@ package gamestore.mvc.model.pojo;
 
 public class Acessorio extends Produto{
 
+	private int acessorioId;
+	private String outrasInformacoes;
 
 	public Acessorio(int produtoId, String nome, String descricao, float preco, int acessorioId,
 			String outrasInformacoes) {
@@ -25,9 +27,6 @@ public class Acessorio extends Produto{
 		super(nome, descricao, preco);
 		this.outrasInformacoes = outrasInformacoes;
 	}
-
-	private int acessorioId;
-	private String outrasInformacoes;
 
 	public int getAcessorioId() {
 		return acessorioId;
