@@ -97,7 +97,11 @@ select * from consoles;
 select * from acessorios;
 select * from clientes;
 select * from pedidos;
-select * from compras;
+select * from compras where compra_id = 2;
+
+INSERT INTO `compras` (`data`, `outras_informacoes`, `produto_id`, `cliente_id`) VALUES ('23', '23', '23', '1');
+UPDATE `compras` SET `data` = '23', `outras_informacoes` = '23', `produto_id` = '23' WHERE (`compra_id` = '3');
+
 
 /* Select por id */
 select * from produtos p inner join jogos j on j.produto_id = p.produto_id where j.jogo_id = 3;
@@ -149,3 +153,4 @@ where cm.cliente_id = 1;
 select * from produtos;
 drop table produtos;
 
+select * from compras inner join produtos on compras.produto_id = produtos.produto_id inner join clientes on clientes.cliente_id = compras.cliente_id where compras.compra_id = 1;
