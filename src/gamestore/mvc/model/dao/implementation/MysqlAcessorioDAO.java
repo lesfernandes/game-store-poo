@@ -155,7 +155,7 @@ public class MysqlAcessorioDAO implements IAcessorioDAO{
 			MysqlProdutoDAO produtoDao = new MysqlProdutoDAO();
 			produtoDao.update(t);
 
-			String sql = "UPDATE `acessorios` SET `outras_informacoes` = 'a' WHERE (`acessorio_id` = ?);";
+			String sql = "UPDATE `acessorios` SET `outras_informacoes` = '?' WHERE (`acessorio_id` = ?);";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, t.getOutrasInformacoes());

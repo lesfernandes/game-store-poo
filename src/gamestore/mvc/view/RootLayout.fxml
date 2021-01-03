@@ -24,15 +24,6 @@
                   <Insets left="5.0" top="5.0" />
                </BorderPane.margin>
             </MenuButton>
-            <HBox alignment="TOP_RIGHT" prefHeight="0.0" prefWidth="523.0" spacing="5.0">
-               <children>
-                  <Button mnemonicParsing="false" text="Salvar" />
-                  <Button mnemonicParsing="false" text="Salvar como..." />
-               </children>
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </HBox>
          </children>
          <BorderPane.margin>
             <Insets left="5.0" top="5.0" />

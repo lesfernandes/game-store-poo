@@ -71,10 +71,10 @@ public class AcessoriosOverviewController implements Initializable{
 			AcessoriosDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
 			controller.setAcessorio(currentAcessorio);
-			
+
 			// Mostra a janela e espera até o usuário fechar.
 			dialogStage.showAndWait();
-			
+
 			getData();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -108,7 +108,7 @@ public class AcessoriosOverviewController implements Initializable{
 
 			// Mostra a janela e espera até o usuário fechar.
 			dialogStage.showAndWait();
-			
+
 			getData();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -119,7 +119,7 @@ public class AcessoriosOverviewController implements Initializable{
 		dao.getAll();
 		acessorioData = FXCollections.observableArrayList(dao.getAll());
 	}
-	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		getData();
