@@ -46,4 +46,9 @@ public class Acessorio extends Produto{
 		return this;
 	}
 
+	@Override
+	public String toString() {
+		return "Acessorio [acessorioId=" + acessorioId + ", outrasInformacoes=" + outrasInformacoes + "]";
+	}
+
 }

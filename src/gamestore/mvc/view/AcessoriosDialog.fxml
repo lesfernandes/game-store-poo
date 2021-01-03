@@ -35,7 +35,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <HBox alignment="BOTTOM_RIGHT" layoutX="20.0" layoutY="20.0" prefHeight="174.0" prefWidth="440.0" spacing="5.0">
+      <HBox alignment="BOTTOM_RIGHT" layoutX="20.0" layoutY="145.0" prefHeight="26.0" prefWidth="440.0" spacing="5.0">
          <children>
             <Button fx:id="cancelarBtn" mnemonicParsing="false" onAction="#handleCancelar" text="Cancelar" />
             <Button fx:id="salvarBtn" mnemonicParsing="false" onAction="#handleSalvar" text="Salvar" />

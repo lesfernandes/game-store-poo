@@ -105,6 +105,9 @@ public class AcessoriosOverviewController implements Initializable{
 			// dialogStage.initOwner(primaryStage);
 			Scene scene = new Scene(page);
 			dialogStage.setScene(scene);
+			
+			AcessoriosDialogController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
 
 			// Mostra a janela e espera até o usuário fechar.
 			dialogStage.showAndWait();
@@ -118,18 +121,19 @@ public class AcessoriosOverviewController implements Initializable{
 	public void getData() {
 		dao.getAll();
 		acessorioData = FXCollections.observableArrayList(dao.getAll());
+		acessorioTable.setItems(acessorioData);
 	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		getData();
-
 		// Row factory (add the handle click event)
 		acessorioTable.setRowFactory( tableView -> {
 			TableRow<Acessorio> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
 				Acessorio acessorio = row.getItem();
-				setCurrentAcessorio(acessorio);
+				if(acessorio != null) {
+					setCurrentAcessorio(acessorio);					
+				}
 			});
 			return row ;
 		});
@@ -138,8 +142,7 @@ public class AcessoriosOverviewController implements Initializable{
 		nomeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().nomeProperty()));
 		precoColumn.setCellValueFactory(cellData -> new SimpleFloatProperty(cellData.getValue().getPreco()));
 
-
-		acessorioTable.setItems(acessorioData);
+		getData();
 	}
 
 	private void setCurrentAcessorio(Acessorio acessorio) {

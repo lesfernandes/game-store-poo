@@ -39,8 +39,8 @@ public class AcessoriosDialogController implements Initializable{
     
     @FXML
     void handleCancelar(ActionEvent event) {
+    	dialogStage.close();
     	System.out.println("batata frita com repolho");
-		dialogStage.close();
     }
 
     @FXML
@@ -59,6 +59,7 @@ public class AcessoriosDialogController implements Initializable{
     						.setDescricao(descricao)
     						.setPreco(preco)
     						.setNome(nome);
+    		System.out.println(this.acessorio.toString());
     		dao.update(this.acessorio);
     	}
     	
@@ -80,23 +81,6 @@ public class AcessoriosDialogController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
-		salvarBtn.setOnAction((ActionEvent event)->{
-				Acessorio acessorio = new Acessorio(nomeInput.getText(),
-													descricaoInput.getText(),
-													Float.parseFloat(precoInput.getText()),
-													outrasInformacoesInput.getText());
-
-				IAcessorioDAO dao = new MysqlAcessorioDAO();
-
-				dao.save(acessorio);
-			}
-		);
-
-		cancelarBtn.setOnAction((ActionEvent event)->{
-
-			}
-		);
 
 	}
 	 

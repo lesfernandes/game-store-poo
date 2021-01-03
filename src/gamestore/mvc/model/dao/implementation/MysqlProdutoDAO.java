@@ -108,13 +108,13 @@ public class MysqlProdutoDAO implements IProdutoDAO {
 		try {
 			Connection con = MysqlFactory.getConnection();
 
-			String sql = "update produtos " + "set descricao = ?, nome = ?, preco = '?' " + "where produto_id = '1';";
+			String sql = "update produtos set descricao = ?, nome = ?, preco = ? where produto_id = ?;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, t.getDescricao());
-			pstmt.setString(1, t.getNome());
-			pstmt.setFloat(1, t.getPreco());
-			pstmt.setInt(1, t.getProdutoId());
+			pstmt.setString(2, t.getNome());
+			pstmt.setFloat(3, t.getPreco());
+			pstmt.setInt(4, t.getProdutoId());
 
 			succesfull = pstmt.execute();
 
