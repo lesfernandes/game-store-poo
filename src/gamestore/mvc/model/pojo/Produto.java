@@ -1,26 +1,24 @@
 package gamestore.mvc.model.pojo;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 public class Produto {
 
 	private Integer produto_id;
-	private StringProperty nome;
+	private String nome;
 	private String descricao;
 	private float preco;
 
 	public Produto(int produtoId, String nome, String descricao, float preco) {
 		super();
 		this.produto_id = produtoId;
-		this.nome = new SimpleStringProperty(nome);
+		this.nome = nome;
 		this.descricao = descricao;
 		this.preco = preco;
 	}
 
 	public Produto(String nome, String descricao, float preco) {
 		super();
-		this.nome = new SimpleStringProperty(nome);
+		this.nome = nome;
 		this.descricao = descricao;
 		this.preco = preco;
 	}
@@ -39,15 +37,15 @@ public class Produto {
 	}
 
 	public String getNome() {
-		return nome.get();
+		return nome;
 	}
 
 	public Produto setNome(String nome) {
-		this.nome.set(nome);
+		this.nome = nome;
 		return this;
 	}
 
-	public StringProperty nomeProperty() {
+	public String nomeProperty() {
 		return nome;
 	}
 
