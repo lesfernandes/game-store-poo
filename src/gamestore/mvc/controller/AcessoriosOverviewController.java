@@ -48,7 +48,24 @@ public class AcessoriosOverviewController implements Initializable{
 	public void setMain(Main main) {
         this.main = main;
 
-        // Adiciona os dados da observable list na tabela
         acessorioTable.setItems(main.getAcessorioData());
     }
+	
+	/*private void showPersonDetails(Acessorio acessorio) {
+	    if (acessorio != null) {
+	    	nomeLabel.setText(acessorio.getNome());
+	    	descricaoLabel.setText(acessorio.getDescricao());
+	    	precoLabel.setText(acessorio.getPreco());
+	    	outrasInformacoesLabel.setText(acessorio.toString(person.getPostalCode()));
+
+	    } else {
+	        firstNameLabel.setText("");
+	        lastNameLabel.setText("");
+	        streetLabel.setText("");
+	        postalCodeLabel.setText("");
+	        cityLabel.setText("");
+	        birthdayLabel.setText("");
+	    }
+	}*/
+	
 }

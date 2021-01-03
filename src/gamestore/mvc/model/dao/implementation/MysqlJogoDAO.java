@@ -9,6 +9,8 @@ import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
+import com.mysql.jdbc.Statement;
+
 import gamestore.mvc.model.dao.factories.MysqlFactory;
 import gamestore.mvc.model.dao.interfaces.IJogoDAO;
 import gamestore.mvc.model.pojo.Jogo;
@@ -108,7 +110,7 @@ public class MysqlJogoDAO implements IJogoDAO{
 			ResultSet rs = pstmt.getGeneratedKeys();
 			int produtoId = 0;
 			while(rs.next()) {
-				produtoId = rs.getInt(0);
+				produtoId = rs.getInt(1);
 			}
 
 			sql = "INSERT INTO `jogos` (`memoria_necessaria`, `numero_de_jogadores`, `outras_informacoes`, `produto_id`) " +

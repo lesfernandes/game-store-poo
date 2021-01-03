@@ -1,12 +1,12 @@
 package gamestore;
 
 public class EnviromentVariablesExample {
-	private static String url = "172.17.0.2";
+	private static String url = "127.0.0.1";
 	private static String port = "3306";
 	private static String database = "gamestore";
 	private static String user = "root";
-	private static String password = "password";
-	
+	private static String password = "";
+
 	public static String getUrl() {
 		return url;
 	}

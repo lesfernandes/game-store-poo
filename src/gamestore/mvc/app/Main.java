@@ -1,6 +1,8 @@
 package gamestore.mvc.app;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import gamestore.mvc.model.dao.implementation.MysqlAcessorioDAO;
 import gamestore.mvc.model.dao.interfaces.IAcessorioDAO;
