@@ -20,11 +20,11 @@ public class Main extends Application{
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 
-	private ObservableList<Acessorio> acessorioData = FXCollections.observableArrayList();
+	private ObservableList<Acessorio> acessorioData = null;
 	private IAcessorioDAO dao = new MysqlAcessorioDAO();
 
 	public Main(){
-		acessorioData = dao.getAll();
+		acessorioData = FXCollections.observableArrayList(dao.getAll());
 	}
 
 	public ObservableList<Acessorio> getAcessorioData() {

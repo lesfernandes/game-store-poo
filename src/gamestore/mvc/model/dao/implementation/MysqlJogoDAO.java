@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
+
+import com.mysql.jdbc.Statement;
 
 import gamestore.mvc.model.dao.factories.MysqlFactory;
 import gamestore.mvc.model.dao.interfaces.IJogoDAO;
 import gamestore.mvc.model.pojo.Jogo;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class MysqlJogoDAO implements IJogoDAO{
 
@@ -50,8 +52,8 @@ public class MysqlJogoDAO implements IJogoDAO{
 	}
 
 	@Override
-	public ObservableList<Jogo> getAll() {
-		ObservableList<Jogo> jogos = FXCollections.observableArrayList();
+	public List<Jogo> getAll() {
+		List<Jogo> jogos = new LinkedList<Jogo>();
 
 		try {
 			Connection con = MysqlFactory.getConnection();
@@ -97,13 +99,13 @@ public class MysqlJogoDAO implements IJogoDAO{
 			String sql = "INSERT INTO `produtos` (`descricao`, `nome`, `preco`) ";
 			sql += "VALUES (?, ?, ?);";
 
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, j.getDescricao());
 			pstmt.setString(2, j.getNome());
 			pstmt.setFloat(3, j.getPreco());
 			pstmt.execute();
 
-			ResultSet rs = pstmt.executeQuery();
+			ResultSet rs = pstmt.getGeneratedKeys();
 			int produtoId = 0;
 			while(rs.next()) {
 				produtoId = rs.getInt(0);

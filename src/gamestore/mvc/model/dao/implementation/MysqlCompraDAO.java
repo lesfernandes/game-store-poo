@@ -5,13 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import gamestore.mvc.model.dao.factories.MysqlFactory;
 import gamestore.mvc.model.dao.interfaces.ICompraDAO;
 import gamestore.mvc.model.pojo.Cliente;
 import gamestore.mvc.model.pojo.Compra;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import gamestore.mvc.model.pojo.Produto;
 
 public class MysqlCompraDAO implements ICompraDAO {
@@ -66,8 +66,8 @@ public class MysqlCompraDAO implements ICompraDAO {
 
 	@Override
 
-	public ObservableList<Compra> getAll() {
-		ObservableList<Compra> compras = FXCollections.observableArrayList();
+	public List<Compra> getAll() {
+		List<Compra> compras = new LinkedList<Compra>();
 
 		try {
 			Connection con = MysqlFactory.getConnection();

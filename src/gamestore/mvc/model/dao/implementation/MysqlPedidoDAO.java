@@ -4,7 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import gamestore.mvc.model.dao.factories.MysqlFactory;
 import gamestore.mvc.model.dao.interfaces.*;
@@ -41,8 +42,8 @@ public class MysqlPedidoDAO implements IPedidoDAO {
 	}
 
 	@Override
-	public ObservableList<Pedido> getAll() {
-		ObservableList<Pedido> pedido = FXCollections.observableArrayList();
+	public List<Pedido> getAll() {
+		List<Pedido> pedido = new ArrayList<Pedido>(); 
 
 		try {
 			Connection con = MysqlFactory.getConnection();

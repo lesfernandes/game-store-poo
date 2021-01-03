@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 import gamestore.mvc.model.dao.factories.MysqlFactory;
 import gamestore.mvc.model.dao.interfaces.IProdutoDAO;
 import gamestore.mvc.model.pojo.Produto;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
-public class MysqlProdutoDAO implements IProdutoDAO{
+public class MysqlProdutoDAO implements IProdutoDAO {
 
 	@Override
 	public Produto get(Integer id) {
@@ -26,7 +26,7 @@ public class MysqlProdutoDAO implements IProdutoDAO{
 			pstmt.setInt(1, id);
 
 			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				int produto_id = rs.getInt("produto_id");
 				String descricao = rs.getString("descricao");
 				String nome = rs.getString("nome");
@@ -45,8 +45,8 @@ public class MysqlProdutoDAO implements IProdutoDAO{
 	}
 
 	@Override
-	public ObservableList<Produto> getAll() {
-		ObservableList<Produto> produtos = FXCollections.observableArrayList();
+	public List<Produto> getAll() {
+		List<Produto> produtos = new LinkedList<Produto>();
 
 		try {
 			Connection con = MysqlFactory.getConnection();
@@ -56,7 +56,7 @@ public class MysqlProdutoDAO implements IProdutoDAO{
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
 			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				int produto_id = rs.getInt("produto_id");
 				String descricao = rs.getString("descricao");
 				String nome = rs.getString("nome");
@@ -108,9 +108,7 @@ public class MysqlProdutoDAO implements IProdutoDAO{
 		try {
 			Connection con = MysqlFactory.getConnection();
 
-			String sql = "update produtos " +
-					"set descricao = ?, nome = ?, preco = '?' " +
-					"where produto_id = '1';";
+			String sql = "update produtos " + "set descricao = ?, nome = ?, preco = '?' " + "where produto_id = '1';";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, t.getDescricao());

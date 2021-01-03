@@ -1,11 +1,12 @@
 package gamestore.mvc.model.dao.interfaces;
 
-import javafx.collections.ObservableList;
+import java.util.List;
+
 
 public interface IDAO<T> {
 	T get(Integer id);
 
-    ObservableList<T> getAll();
+    List<T> getAll();
 
     boolean save(T t);
 

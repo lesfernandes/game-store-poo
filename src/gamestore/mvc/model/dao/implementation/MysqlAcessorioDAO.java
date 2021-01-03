@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
 import gamestore.mvc.model.dao.factories.MysqlFactory;
 import gamestore.mvc.model.dao.interfaces.IAcessorioDAO;
 import gamestore.mvc.model.pojo.Acessorio;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class MysqlAcessorioDAO implements IAcessorioDAO{
 
@@ -52,8 +52,8 @@ public class MysqlAcessorioDAO implements IAcessorioDAO{
 	}
 
 	@Override
-	public ObservableList<Acessorio> getAll() {
-		ObservableList<Acessorio> acessorios = FXCollections.observableArrayList();
+	public List<Acessorio> getAll() {
+		List<Acessorio> acessorios = new LinkedList<Acessorio>();
 
 		try {
 			Connection con = MysqlFactory.getConnection();

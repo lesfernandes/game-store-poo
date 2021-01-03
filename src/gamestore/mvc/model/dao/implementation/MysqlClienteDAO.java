@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 import gamestore.mvc.model.dao.factories.MysqlFactory;
 import gamestore.mvc.model.dao.interfaces.IClienteDAO;
 import gamestore.mvc.model.pojo.Cliente;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class MysqlClienteDAO implements IClienteDAO{
 
@@ -45,8 +45,8 @@ public class MysqlClienteDAO implements IClienteDAO{
 	}
 
 	@Override
-	public ObservableList<Cliente> getAll() {
-		ObservableList<Cliente> clientes = FXCollections.observableArrayList();
+	public List<Cliente> getAll() {
+		List<Cliente> clientes = new LinkedList<Cliente>();
 
 		try {
 			Connection con = MysqlFactory.getConnection();
