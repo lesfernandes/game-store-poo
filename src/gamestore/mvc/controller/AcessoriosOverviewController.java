@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import gamestore.mvc.app.Main;
 import gamestore.mvc.model.dao.implementation.MysqlAcessorioDAO;
@@ -49,27 +50,29 @@ public class AcessoriosOverviewController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		dao.getAll();
 		acessorioData = FXCollections.observableArrayList(dao.getAll());
+		// Row factory (add the handle click event)
+		acessorioTable.setRowFactory( tv -> {
+		    TableRow<Acessorio> row = new TableRow<>();
+		    row.setOnMouseClicked(event -> {
+		    	Acessorio acessorio = row.getItem();
+		    	setCurentAcessorio(acessorio);
+		    });
+		    return row ;
+		});
 		
+		// Columns Factory
 		nomeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().nomeProperty()));
 		precoColumn.setCellValueFactory(cellData -> new SimpleFloatProperty(cellData.getValue().getPreco()));
+		
+		
 		acessorioTable.setItems(acessorioData);
 	}
 	
-	/*private void showPersonDetails(Acessorio acessorio) {
-	    if (acessorio != null) {
-	    	nomeLabel.setText(acessorio.getNome());
-	    	descricaoLabel.setText(acessorio.getDescricao());
-	    	precoLabel.setText(acessorio.getPreco());
-	    	outrasInformacoesLabel.setText(acessorio.toString(person.getPostalCode()));
-
-	    } else {
-	        firstNameLabel.setText("");
-	        lastNameLabel.setText("");
-	        streetLabel.setText("");
-	        postalCodeLabel.setText("");
-	        cityLabel.setText("");
-	        birthdayLabel.setText("");
-	    }
-	}*/
+	private void setCurentAcessorio(Acessorio acessorio) {
+		nomeLabel.setText(acessorio.getNome());
+    	descricaoLabel.setText(acessorio.getDescricao());
+    	precoLabel.setText(String.valueOf(acessorio.getPreco()));
+    	outrasInformacoesLabel.setText(acessorio.getOutrasInformacoes());
+	}
 	
 }
