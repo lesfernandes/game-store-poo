@@ -20,7 +20,6 @@ public class Main extends Application{
 		this.primaryStage.setTitle("Gamestore");
 
 		initRootLayout();
-
 	}
 
 	/**

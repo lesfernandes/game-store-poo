@@ -1,10 +1,12 @@
 package gamestore.mvc.model.dao.implementation;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class MysqlCompraDAO implements ICompraDAO {
 			while(rs.next()) {
 				//Compra
 				int compraId = rs.getInt("compra_id");
-				Date data = rs.getDate("data");
+				LocalDate data = rs.getDate("data").toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 				String outrasInformacoesCompra = rs.getString("outras_informacoes");
 
 				//Cliente
@@ -81,7 +83,7 @@ public class MysqlCompraDAO implements ICompraDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				//Compra
-				Date data = rs.getDate("data");
+				LocalDate data = rs.getDate("data").toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 				String outrasInformacoesCompra = rs.getString("outras_informacoes");
 
 				//Cliente
@@ -125,7 +127,7 @@ public class MysqlCompraDAO implements ICompraDAO {
 			String sql = "INSERT INTO `compras` (`data`, `outras_informacoes`, `produto_id`, `cliente_id`) VALUES (?,?,?,?);";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setDate(1, (java.sql.Date) t.getData());
+			pstmt.setDate(1, Date.valueOf(t.getData()));
 			pstmt.setString(2, t.getOutrasInformacoes());
 			pstmt.setInt(3, t.getProduto().getProdutoId());
 			pstmt.setInt(4, t.getCliente().getClienteId());
@@ -151,7 +153,7 @@ public class MysqlCompraDAO implements ICompraDAO {
 			String sql = "UPDATE `compras` SET `data` = ?, `outras_informacoes` = ?, WHERE (`compra_id` = ?);";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setDate(1, (java.sql.Date) t.getData());
+			pstmt.setDate(1, Date.valueOf(t.getData()));
 			pstmt.setString(2, t.getOutrasInformacoes());
 			pstmt.setInt(3, t.getCompraId());
 

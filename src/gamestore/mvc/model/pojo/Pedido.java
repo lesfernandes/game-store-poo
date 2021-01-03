@@ -1,16 +1,16 @@
 package gamestore.mvc.model.pojo;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Pedido {
-	
+
 	private int pedidoId;
-	private Date data;
+	private LocalDate data;
 	private String outrasInformacoes;
 	private Produto produto;
 	private Cliente cliente;
-	
-	public Pedido(int pedidoId, Date data, String outrasInformacoes, Produto produto, Cliente cliente) {
+
+	public Pedido(int pedidoId, LocalDate data, String outrasInformacoes, Produto produto, Cliente cliente) {
 		super();
 		this.pedidoId = pedidoId;
 		this.data = data;
@@ -18,8 +18,8 @@ public class Pedido {
 		this.produto = produto;
 		this.cliente = cliente;
 	}
-	
-	public Pedido(Date data, String outrasInformacoes, Produto produto, Cliente cliente) {
+
+	public Pedido(LocalDate data, String outrasInformacoes, Produto produto, Cliente cliente) {
 		super();
 		this.data = data;
 		this.outrasInformacoes = outrasInformacoes;
@@ -41,24 +41,24 @@ public class Pedido {
 		return this;
 	}
 
-	public Date getData() {
+	public LocalDate getData() {
 		return data;
 	}
-	
-	public Pedido setData(Date data) {
+
+	public Pedido setData(LocalDate data) {
 		this.data = data;
 		return this;
 	}
-	
+
 	public String getOutrasInformacoes() {
 		return outrasInformacoes;
 	}
-	
+
 	public Pedido setOutrasInformacoes(String outrasInformacoes) {
 		this.outrasInformacoes = outrasInformacoes;
 		return this;
 	}
-	
+
 	public Produto getProduto() {
 		return produto;
 	}
@@ -71,10 +71,10 @@ public class Pedido {
 	public Cliente getCliente() {
 		return cliente;
 	}
-	
+
 	public Pedido setCliente(Cliente cliente) {
 		this.cliente = cliente;
 		return this;
 	}
-	
+
 }

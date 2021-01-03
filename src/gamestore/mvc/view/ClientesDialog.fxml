@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="160.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="160.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamestore.mvc.controller.ClientesDialogController">
    <children>
       <GridPane layoutX="25.0" layoutY="53.0" prefHeight="121.0" prefWidth="442.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
         <columnConstraints>
@@ -25,16 +25,16 @@
             <Label text="Nome completo" GridPane.rowIndex="1" />
             <Label text="Endereço" GridPane.rowIndex="2" />
             <Label text="Outras informações" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="codigoInput" GridPane.columnIndex="1" />
+            <TextField fx:id="nomeInput" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="enderecoInput" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="outrasInformacoesInput" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <HBox alignment="BOTTOM_RIGHT" prefHeight="170.0" prefWidth="400.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button mnemonicParsing="false" text="Cancelar" />
-            <Button mnemonicParsing="false" text="Salvar" />
+            <Button fx:id="cancelarBtn" mnemonicParsing="false" text="Cancelar" />
+            <Button fx:id="salvarBtn" mnemonicParsing="false" text="Salvar" />
          </children>
          <padding>
             <Insets bottom="5.0" right="5.0" />

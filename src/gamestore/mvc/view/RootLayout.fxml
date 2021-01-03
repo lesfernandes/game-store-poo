@@ -12,23 +12,17 @@
          <children>
             <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="164.0" text="Página" BorderPane.alignment="TOP_LEFT">
               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#handleAcessoriosMenu" text="Acessórios" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleClientesMenu" text="Clientes" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleComprasMenu" text="Compras" />
-                <MenuItem mnemonicParsing="false" onAction="#handleConsolesMenu" text="Consoles" />
-                <MenuItem mnemonicParsing="false" onAction="#handleJogosMenu" text="Jogos" />
-                  <MenuItem mnemonicParsing="false" onAction="#handlePedidosMenu" text="Pedidos" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleProdutosMenu" text="Produtos" />
+                  <MenuItem onAction="#handleAcessoriosMenu" mnemonicParsing="false" text="Acessórios"/>
+                  <MenuItem onAction="#handleClientesMenu" mnemonicParsing="false" text="Clientes" />
+                  <MenuItem  onAction="#handleComprasMenu" mnemonicParsing="false" text="Compras" />
+                  <MenuItem onAction="#handleConsolesMenu" mnemonicParsing="false" text="Consoles" />
+                  <MenuItem onAction="#handleJogosMenu" mnemonicParsing="false" text="Jogos" />
+                  <MenuItem onAction="#handlePedidosMenu" mnemonicParsing="false" text="Pedidos" />
               </items>
                <BorderPane.margin>
                   <Insets left="5.0" top="5.0" />
                </BorderPane.margin>
             </MenuButton>
-            <HBox alignment="TOP_RIGHT" prefHeight="0.0" prefWidth="523.0" spacing="5.0">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </HBox>
          </children>
          <BorderPane.margin>
             <Insets left="5.0" top="5.0" />

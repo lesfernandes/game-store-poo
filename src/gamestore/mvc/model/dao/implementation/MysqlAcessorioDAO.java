@@ -13,9 +13,9 @@ import gamestore.mvc.model.dao.factories.MysqlFactory;
 import gamestore.mvc.model.dao.interfaces.IAcessorioDAO;
 import gamestore.mvc.model.pojo.Acessorio;
 
-public class MysqlAcessorioDAO implements IAcessorioDAO{
+public class MysqlAcessorioDAO implements IAcessorioDAO {
 
-		@Override
+	@Override
 	public Acessorio get(Integer id) {
 		Acessorio acessorio = null;
 
@@ -28,18 +28,17 @@ public class MysqlAcessorioDAO implements IAcessorioDAO{
 			pstmt.setInt(1, id);
 
 			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
-				//Produto
+			while (rs.next()) {
+				// Produto
 				int produto_id = rs.getInt("produto_id");
 				String descricao = rs.getString("descricao");
 				String nome = rs.getString("nome");
 				Float preco = rs.getFloat("preco");
-				//Acessorio
+				// Acessorio
 				int acessorioId = rs.getInt("acessorio_id");
 				String outrasInformacoes = rs.getString("outras_informacoes");
 
-				acessorio = new Acessorio(produto_id, nome, descricao, preco, acessorioId,
-						outrasInformacoes);
+				acessorio = new Acessorio(produto_id, nome, descricao, preco, acessorioId, outrasInformacoes);
 			}
 
 			pstmt.close();
@@ -63,18 +62,17 @@ public class MysqlAcessorioDAO implements IAcessorioDAO{
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
 			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
-				//Produto
+			while (rs.next()) {
+				// Produto
 				int produto_id = rs.getInt("produto_id");
 				String descricao = rs.getString("descricao");
 				String nome = rs.getString("nome");
 				Float preco = rs.getFloat("preco");
-				//Console
+				// Console
 				int acessorioId = rs.getInt("acessorio_id");
 				String outrasInformacoes = rs.getString("outras_informacoes");
 
-				Acessorio acessorio = new Acessorio(produto_id, nome, descricao, preco, acessorioId,
-						outrasInformacoes);
+				Acessorio acessorio = new Acessorio(produto_id, nome, descricao, preco, acessorioId, outrasInformacoes);
 
 				acessorios.add(acessorio);
 			}
@@ -107,7 +105,7 @@ public class MysqlAcessorioDAO implements IAcessorioDAO{
 
 			ResultSet rs = pstmt.getGeneratedKeys();
 			int produtoId = 0;
-			while(rs.next()) {
+			while (rs.next()) {
 				produtoId = rs.getInt(1);
 			}
 
@@ -121,7 +119,7 @@ public class MysqlAcessorioDAO implements IAcessorioDAO{
 
 			pstmt.close();
 		} catch (SQLException e) {
-			if(con != null) {
+			if (con != null) {
 				try {
 					con.rollback();
 				} catch (SQLException e1) {
@@ -130,8 +128,8 @@ public class MysqlAcessorioDAO implements IAcessorioDAO{
 			}
 
 			e.printStackTrace();
-		}finally {
-			if(con != null) {
+		} finally {
+			if (con != null) {
 				try {
 					con.setAutoCommit(true);
 				} catch (SQLException e) {
@@ -165,7 +163,7 @@ public class MysqlAcessorioDAO implements IAcessorioDAO{
 
 			pstmt.close();
 		} catch (SQLException e) {
-			if(con != null) {
+			if (con != null) {
 				try {
 					con.rollback();
 				} catch (SQLException e1) {
@@ -174,8 +172,8 @@ public class MysqlAcessorioDAO implements IAcessorioDAO{
 			}
 
 			e.printStackTrace();
-		}finally {
-			if(con != null) {
+		} finally {
+			if (con != null) {
 				try {
 					con.setAutoCommit(true);
 				} catch (SQLException e) {
