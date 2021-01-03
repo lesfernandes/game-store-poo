@@ -40,10 +40,15 @@ public class AcessoriosDialogController implements Initializable{
 													descricaoInput.getText(),
 													Float.parseFloat(precoInput.getText()),
 													outrasInformacoesInput.getText());
-				
+
 				IAcessorioDAO dao = new MysqlAcessorioDAO();
-				
+
 				dao.save(acessorio);
+			}
+		);
+
+		cancelarBtn.setOnAction((ActionEvent event)->{
+
 			}
 		);
 

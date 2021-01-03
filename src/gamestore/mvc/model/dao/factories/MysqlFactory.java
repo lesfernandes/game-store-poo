@@ -12,7 +12,7 @@ public class MysqlFactory{
  private static String database = EnviromentVariables.getDatabase();
  private static String user = EnviromentVariables.getUser();
  private static String password = EnviromentVariables.getPassword();
-	
+
  public static Connection getConnection() throws SQLException {
 	 
 	 if(connection == null) {
@@ -21,5 +21,5 @@ public class MysqlFactory{
 	 }
 	 return connection;
  }
- 
+
 }
