@@ -77,9 +77,7 @@ public class MysqlPedidoDAO implements IPedidoDAO {
 		try {
 			Connection con = MysqlFactory.getConnection();
 
-			String sql = "select * from pedidos "
-					+ "inner join produtos on pedidos.produto_id = produtos.produto_id "
-					+ "inner join clientes on clientes.cliente_id = pedidos.cliente_id";
+			String sql = "select pe.pedido_id, pe.data, pe.outras_informacoes, pe.produto_id, pe.cliente_id, p.descricao, p.nome as nomeP, p.preco, cli.codigo, cli.nome as nomeCli, cli.endereco, cli.outras_informacaoes from pedidos pe inner join produtos p on pe.produto_id = p.produto_id inner join clientes cli on cli.cliente_id = pe.cliente_id;";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
 			ResultSet rs = pstmt.executeQuery();
@@ -92,7 +90,7 @@ public class MysqlPedidoDAO implements IPedidoDAO {
 				//Cliente
 				int clienteId = rs.getInt("cliente_id");
 				int codigo = rs.getInt("codigo");
-				String nomeCliente = rs.getString("nome");
+				String nomeCliente = rs.getString("nomeCli");
 				String endereco = rs.getString("endereco");
 				String outrasInformacoesCliente = rs.getString("outras_informacaoes");
 
@@ -101,7 +99,7 @@ public class MysqlPedidoDAO implements IPedidoDAO {
 				//Produto
 				int produto_id = rs.getInt("produto_id");
 				String descricao = rs.getString("descricao");
-				String nomeProduto = rs.getString("nome");
+				String nomeProduto = rs.getString("nomeP");
 				Float preco = rs.getFloat("preco");
 
 				Produto produto = new Produto(produto_id, nomeProduto, descricao, preco);
