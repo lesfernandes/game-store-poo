@@ -10,8 +10,8 @@
    <children>
       <HBox alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="250.0" prefWidth="410.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="cancelarBtn" mnemonicParsing="false" text="Cancelar" />
-            <Button fx:id="salvarBtn" mnemonicParsing="false" text="Salvar" />
+            <Button fx:id="cancelarBtn" mnemonicParsing="false" onAction="#handleCancelar" text="Cancelar" />
+            <Button fx:id="salvarBtn" mnemonicParsing="false" onAction="#handleSalvar" text="Salvar" />
          </children>
          <padding>
             <Insets bottom="5.0" right="5.0" />

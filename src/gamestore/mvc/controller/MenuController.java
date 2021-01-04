@@ -21,6 +21,12 @@ public class MenuController implements Initializable{
 	@FXML
 	private MenuButton menuButton;
 
+	@FXML
+    void handlePaginaInicialMenu(ActionEvent event) {
+    	menuButton.setText("Página Inicial");
+    	changeView("../view/InicialOverview.fxml");
+    }
+
     @FXML
     void handleAcessoriosMenu(ActionEvent event) {
     	menuButton.setText("Acessórios");
@@ -55,12 +61,6 @@ public class MenuController implements Initializable{
     void handlePedidosMenu(ActionEvent event) {
     	menuButton.setText("Pedidos");
     	changeView("../view/PedidosOverview.fxml");
-    }
-
-    @FXML
-    void handleProdutosMenu(ActionEvent event) {
-    	menuButton.setText("Produtos");
-    	changeView("../view/MenuOverview.fxml");
     }
 
 	@Override

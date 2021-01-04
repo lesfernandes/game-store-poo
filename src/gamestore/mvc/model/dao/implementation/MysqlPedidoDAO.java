@@ -151,12 +151,14 @@ public class MysqlPedidoDAO implements IPedidoDAO {
 		try {
 			Connection con = MysqlFactory.getConnection();
 
-			String sql = "UPDATE `pedidos` SET `data` = ?, `outras_informacoes` = ?, WHERE (`pedido_id` = ?);";
+			String sql = "UPDATE `pedidos` SET `data` = ?, `outras_informacoes` = ?, `produto_id` = ?, `cliente_id` = ? WHERE `pedido_id` = ?;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setDate(1, Date.valueOf(t.getData()));
 			pstmt.setString(2, t.getOutrasInformacoes());
-			pstmt.setInt(3, t.getPedidoId());
+			pstmt.setInt(3, t.getProduto().getProdutoId());
+			pstmt.setInt(4, t.getCliente().getClienteId());
+			pstmt.setInt(5, t.getPedidoId());
 
 			succesfull = pstmt.execute();
 

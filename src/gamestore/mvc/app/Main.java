@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -20,6 +21,12 @@ public class Main extends Application{
 		this.primaryStage.setTitle("Gamestore");
 
 		initRootLayout();
+
+		FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("../view/InicialOverview.fxml"));
+        AnchorPane anchor = (AnchorPane) loader.load();
+
+        rootLayout.setCenter(anchor);
 	}
 
 	/**
