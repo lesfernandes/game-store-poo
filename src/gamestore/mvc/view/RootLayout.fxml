@@ -10,8 +10,9 @@
    <top>
       <HBox>
          <children>
-            <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="164.0" text="Página" BorderPane.alignment="TOP_LEFT">
+            <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="164.0" text="Página Inicial" BorderPane.alignment="TOP_LEFT">
               <items>
+              	<MenuItem onAction="#handlePaginaInicialMenu" mnemonicParsing="false" text="Página Inicial"/>
                   <MenuItem onAction="#handleAcessoriosMenu" mnemonicParsing="false" text="Acessórios"/>
                   <MenuItem onAction="#handleClientesMenu" mnemonicParsing="false" text="Clientes" />
                   <MenuItem  onAction="#handleComprasMenu" mnemonicParsing="false" text="Compras" />

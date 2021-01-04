@@ -1,6 +1,7 @@
 package gamestore.mvc.controller;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import gamestore.mvc.model.dao.implementation.MysqlClienteDAO;
@@ -21,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class PedidosDialogController implements Initializable{
 	@FXML
@@ -44,18 +46,44 @@ public class PedidosDialogController implements Initializable{
 	private ObservableList<Produto> produtos;
 	private ObservableList<Cliente> clientes;
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		salvarBtn.setOnAction((ActionEvent event)->{
-			Pedido pedido = new Pedido(dataInput.getValue(),
-										outrasInformacoesInput.getText(),
-										produtoInput.getValue(),
-										clienteInput.getValue());
+	private Stage dialogStage;
+	private Pedido pedido = null;
+	private IPedidoDAO dao = new MysqlPedidoDAO();
 
-			IPedidoDAO dao = new MysqlPedidoDAO();
-			dao.save(pedido);
-		});
+	@FXML
+	void handleCancelar(ActionEvent event) {
+		dialogStage.close();
+	}
 
+	@FXML
+	void handleSalvar(ActionEvent event) {
+		LocalDate data = dataInput.getValue();
+		String outrasInformacoes = outrasInformacoesInput.getText();
+		Produto produto = produtoInput.getValue();
+		Cliente cliente = clienteInput.getValue();
+
+		if(this.pedido == null) {
+			this.pedido = new Pedido(data, outrasInformacoes, produto, cliente);
+			dao.save(this.pedido);
+		} else {
+			this.pedido.setData(data).setOutrasInformacoes(outrasInformacoes).setProduto(produto).setCliente(cliente);
+			dao.update(this.pedido);
+		}
+
+		dialogStage.close();
+	}
+
+	public void setPedido(Pedido compra) {
+		this.pedido = compra;
+
+		dataInput.setValue(this.pedido.getData());
+		outrasInformacoesInput.setText(this.pedido.getOutrasInformacoes());
+		produtoInput.setValue(this.pedido.getProduto());
+		clienteInput.setValue(this.pedido.getCliente());
+	}
+
+	public void setDialogStage(Stage dialogStage) {
+		this.dialogStage = dialogStage;
 	}
 
 	public void loadProdutos() {
@@ -70,6 +98,12 @@ public class PedidosDialogController implements Initializable{
 		clientes = FXCollections.observableArrayList(dao.getAll());
 
 		clienteInput.setItems(clientes);
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		loadProdutos();
+		loadClientes();
 	}
 
 }
