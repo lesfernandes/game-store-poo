@@ -149,8 +149,8 @@ public class ComprasOverviewController implements Initializable{
 
 		dataLabel.setText(compra.getData().toString());
 		outrasInformacoesLabel.setText(compra.getOutrasInformacoes());
-		produtoLabel.setText(compra.getProduto().toString());
-		clienteLabel.setText(compra.getCliente().toString());
+		produtoLabel.setText(compra.getProduto().getNome());
+		clienteLabel.setText(compra.getCliente().getNome());
 	}
 
 }
