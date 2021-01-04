@@ -25,7 +25,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class AcessoriosOverviewController implements Initializable{
+public class AcessoriosOverviewController implements Initializable {
 
 	@FXML
 	TableView<Acessorio> acessorioTable;
@@ -83,7 +83,7 @@ public class AcessoriosOverviewController implements Initializable{
 
 	@FXML
 	void handleExcluir(ActionEvent event) {
-		if(currentAcessorio != null) {
+		if (currentAcessorio != null) {
 			dao.delete(currentAcessorio);
 			acessorioTable.getItems().remove(currentAcessorio);
 			this.currentAcessorio = null;
@@ -105,7 +105,7 @@ public class AcessoriosOverviewController implements Initializable{
 			// dialogStage.initOwner(primaryStage);
 			Scene scene = new Scene(page);
 			dialogStage.setScene(scene);
-			
+
 			AcessoriosDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
 
@@ -127,15 +127,15 @@ public class AcessoriosOverviewController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// Row factory (add the handle click event)
-		acessorioTable.setRowFactory( tableView -> {
+		acessorioTable.setRowFactory(tableView -> {
 			TableRow<Acessorio> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
 				Acessorio acessorio = row.getItem();
-				if(acessorio != null) {
-					setCurrentAcessorio(acessorio);					
+				if (acessorio != null) {
+					setCurrentAcessorio(acessorio);
 				}
 			});
-			return row ;
+			return row;
 		});
 
 		// Columns Factory
@@ -146,7 +146,7 @@ public class AcessoriosOverviewController implements Initializable{
 	}
 
 	private void setCurrentAcessorio(Acessorio acessorio) {
-		this.currentAcessorio =  acessorio;
+		this.currentAcessorio = acessorio;
 
 		nomeLabel.setText(acessorio.getNome());
 		descricaoLabel.setText(acessorio.getDescricao());

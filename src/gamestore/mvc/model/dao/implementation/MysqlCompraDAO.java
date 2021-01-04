@@ -74,7 +74,7 @@ public class MysqlCompraDAO implements ICompraDAO {
 		try {
 			Connection con = MysqlFactory.getConnection();
 
-			String sql = "select * from compras inner join produtos on compras.produto_id = produtos.produto_id inner join clientes on clientes.cliente_id = compras.cliente_id;";
+			String sql = "select cm.compra_id, cm.data, cm.outras_informacoes, cm.produto_id, cm.cliente_id, p.descricao, p.nome as nomeP, p.preco, cli.codigo, cli.nome as nomeCli, cli.endereco, cli.outras_informacaoes from compras cm inner join produtos p on cm.produto_id = p.produto_id inner join clientes cli on cli.cliente_id = cm.cliente_id;";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
 			// pstmt.setString(1, value);
@@ -82,13 +82,14 @@ public class MysqlCompraDAO implements ICompraDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				//Compra
+				int compraId = rs.getInt("compra_id");
 				LocalDate data = rs.getDate("data").toLocalDate();
 				String outrasInformacoesCompra = rs.getString("outras_informacoes");
 
 				//Cliente
 				int clienteId = rs.getInt("cliente_id");
 				int codigo = rs.getInt("codigo");
-				String nomeCliente = rs.getString("nome");
+				String nomeCliente = rs.getString("nomeCli");
 				String endereco = rs.getString("endereco");
 				String outrasInformacoesCliente = rs.getString("outras_informacaoes");
 
@@ -97,12 +98,12 @@ public class MysqlCompraDAO implements ICompraDAO {
 				//Produto
 				int produto_id = rs.getInt("produto_id");
 				String descricao = rs.getString("descricao");
-				String nomeProduto = rs.getString("nome");
+				String nomeProduto = rs.getString("nomeP");
 				Float preco = rs.getFloat("preco");
 
 				Produto produto = new Produto(produto_id, nomeProduto, descricao, preco);
 
-				Compra compra = new Compra(data, outrasInformacoesCompra, produto, cliente);
+				Compra compra = new Compra(compraId, data, outrasInformacoesCompra, produto, cliente);
 				compras.add(compra);
 			}
 
@@ -149,12 +150,14 @@ public class MysqlCompraDAO implements ICompraDAO {
 		try {
 			Connection con = MysqlFactory.getConnection();
 
-			String sql = "UPDATE `compras` SET `data` = ?, `outras_informacoes` = ?, WHERE (`compra_id` = ?);";
+			String sql = "UPDATE `compras` SET `data` = ?, `outras_informacoes` = ?, `produto_id` = ?, `cliente_id` = ? WHERE `compra_id` = ?;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setDate(1, Date.valueOf(t.getData()));
 			pstmt.setString(2, t.getOutrasInformacoes());
-			pstmt.setInt(3, t.getCompraId());
+			pstmt.setInt(3, t.getProduto().getProdutoId());
+			pstmt.setInt(4, t.getCliente().getClienteId());
+			pstmt.setInt(5, t.getCompraId());
 
 			succesfull = pstmt.execute();
 
@@ -169,6 +172,7 @@ public class MysqlCompraDAO implements ICompraDAO {
 
 	@Override
 	public boolean delete(Compra t) {
+		System.out.println(t.getCompraId());
 		boolean succesfull = false;
 
 		try {

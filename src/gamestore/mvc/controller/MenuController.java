@@ -14,16 +14,22 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 public class MenuController implements Initializable{
-	
+
 	@FXML
 	private BorderPane rootBorderPane;
 
 	@FXML
 	private MenuButton menuButton;
 
+	@FXML
+    void handlePaginaInicialMenu(ActionEvent event) {
+    	menuButton.setText("Página Inicial");
+    	changeView("../view/InicialOverview.fxml");
+    }
+
     @FXML
     void handleAcessoriosMenu(ActionEvent event) {
-    	menuButton.setText("AcessÃ³rios");
+    	menuButton.setText("Acessórios");
     	changeView("../view/AcessoriosOverview.fxml");
     }
 
@@ -57,19 +63,13 @@ public class MenuController implements Initializable{
     	changeView("../view/PedidosOverview.fxml");
     }
 
-    @FXML
-    void handleProdutosMenu(ActionEvent event) {
-    	menuButton.setText("Produtos");
-    	changeView("../view/MenuOverview.fxml");
-    }
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
+
 	}
-    
-	
+
+
 	private void changeView(String viewPath) {
 		try {
             FXMLLoader loader = new FXMLLoader();
@@ -81,5 +81,5 @@ public class MenuController implements Initializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-	}	
+	}
 }

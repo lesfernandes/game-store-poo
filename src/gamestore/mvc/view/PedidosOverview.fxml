@@ -27,10 +27,14 @@
                   <Label layoutX="48.0" layoutY="78.0" text="Detalhes do pedido:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
                   <GridPane layoutX="34.0" layoutY="53.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
                      <children>
-                        <Label fx:id="dataLabel" text="Data" />
-                        <Label fx:id="clienteLabel" text="Cliente" GridPane.rowIndex="3" />
-                        <Label fx:id="outrasInformacoesLabel" text="Outras informações" GridPane.rowIndex="1" />
-                        <Label fx:id="produtoLabel" text="Produto" GridPane.rowIndex="2" />
+                        <Label text="Data" />
+                        <Label text="Cliente" GridPane.rowIndex="3" />
+                        <Label text="Outras informações" GridPane.rowIndex="1" />
+                        <Label text="Produto" GridPane.rowIndex="2" />
+                        <Label fx:id="dataLabel" GridPane.columnIndex="1" />
+                        <Label fx:id="clienteLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="outrasInformacoesLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="produtoLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -45,9 +49,9 @@
                   </GridPane>
                   <HBox layoutX="5.0" layoutY="174.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
                      <children>
-                        <Button layoutX="5.0" layoutY="174.0" mnemonicParsing="false" text="Novo" />
-                        <Button mnemonicParsing="false" text="Editar" />
-                        <Button mnemonicParsing="false" onAction="#handleDeletePedido" text="Excluir" />
+                        <Button layoutX="5.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleNovo" text="Novo" />
+                        <Button mnemonicParsing="false" onAction="#handleEditar" text="Editar" />
+                        <Button mnemonicParsing="false" onAction="#handleExcluir" text="Excluir" />
                      </children>
                   </HBox>
                </children>

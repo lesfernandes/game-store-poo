@@ -87,9 +87,9 @@ public class MysqlClienteDAO implements IClienteDAO{
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, t.getCodigo());
-			pstmt.setString(1, t.getNome());
-			pstmt.setString(1, t.getEndereco());
-			pstmt.setString(1, t.getOutrasInformacoes());
+			pstmt.setString(2, t.getNome());
+			pstmt.setString(3, t.getEndereco());
+			pstmt.setString(4, t.getOutrasInformacoes());
 
 			succesfull = pstmt.execute();
 
@@ -109,7 +109,7 @@ public class MysqlClienteDAO implements IClienteDAO{
 		try {
 			Connection con = MysqlFactory.getConnection();
 
-			String sql = "UPDATE `clientes` SET `codigo` = ?, `nome` = ?, `endereco` = ?, `outras_informacaoes` = ? WHERE (`cliente_id = ?);";
+			String sql = "UPDATE `clientes` SET `codigo` = ?, `nome` = ?, `endereco` = ?, `outras_informacaoes` = ? WHERE `cliente_id` = ?;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, t.getCodigo());

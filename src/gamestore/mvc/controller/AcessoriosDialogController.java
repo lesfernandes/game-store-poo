@@ -40,7 +40,6 @@ public class AcessoriosDialogController implements Initializable {
 	@FXML
 	void handleCancelar(ActionEvent event) {
 		dialogStage.close();
-		System.out.println("batata frita com repolho");
 	}
 
 	@FXML
@@ -56,7 +55,6 @@ public class AcessoriosDialogController implements Initializable {
 			dao.save(this.acessorio);
 		} else {
 			this.acessorio.setOutrasInformacoes(outrasInformacoes).setDescricao(descricao).setPreco(preco).setNome(nome);
-			System.out.println(this.acessorio.toString());
 			dao.update(this.acessorio);
 		}
 
