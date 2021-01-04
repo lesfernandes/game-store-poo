@@ -71,7 +71,7 @@ public class ComprasOverviewController implements Initializable{
 			controller.setDialogStage(dialogStage);
 			controller.setCompra(currentCompra);
 
-			// Mostra a janela e espera até o usuário fechar.
+			// Mostra a janela e espera atï¿½ o usuï¿½rio fechar.
 			dialogStage.showAndWait();
 
 			getData();

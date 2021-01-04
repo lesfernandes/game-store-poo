@@ -82,6 +82,7 @@ public class MysqlCompraDAO implements ICompraDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				//Compra
+				int compraId = rs.getInt("compra_id");
 				LocalDate data = rs.getDate("data").toLocalDate();
 				String outrasInformacoesCompra = rs.getString("outras_informacoes");
 
@@ -102,7 +103,7 @@ public class MysqlCompraDAO implements ICompraDAO {
 
 				Produto produto = new Produto(produto_id, nomeProduto, descricao, preco);
 
-				Compra compra = new Compra(data, outrasInformacoesCompra, produto, cliente);
+				Compra compra = new Compra(compraId, data, outrasInformacoesCompra, produto, cliente);
 				compras.add(compra);
 			}
 
@@ -149,12 +150,14 @@ public class MysqlCompraDAO implements ICompraDAO {
 		try {
 			Connection con = MysqlFactory.getConnection();
 
-			String sql = "UPDATE `compras` SET `data` = ?, `outras_informacoes` = ? WHERE `compra_id` = ?;";
+			String sql = "UPDATE `compras` SET `data` = ?, `outras_informacoes` = ?, `produto_id` = ?, `cliente_id` = ? WHERE `compra_id` = ?;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setDate(1, Date.valueOf(t.getData()));
 			pstmt.setString(2, t.getOutrasInformacoes());
-			pstmt.setInt(3, t.getCompraId());
+			pstmt.setInt(3, t.getProduto().getProdutoId());
+			pstmt.setInt(4, t.getCliente().getClienteId());
+			pstmt.setInt(5, t.getCompraId());
 
 			succesfull = pstmt.execute();
 
@@ -169,6 +172,7 @@ public class MysqlCompraDAO implements ICompraDAO {
 
 	@Override
 	public boolean delete(Compra t) {
+		System.out.println(t.getCompraId());
 		boolean succesfull = false;
 
 		try {
