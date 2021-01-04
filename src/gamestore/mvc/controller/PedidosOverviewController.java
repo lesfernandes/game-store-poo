@@ -129,7 +129,9 @@ public class PedidosOverviewController implements Initializable{
 			TableRow<Pedido> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
 				Pedido pedido = row.getItem();
-				setCurrentPedido(pedido);
+				if(pedido != null) {
+					setCurrentPedido(pedido);
+				}
 			});
 			return row;
 		});

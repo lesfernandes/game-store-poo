@@ -131,7 +131,9 @@ public class ClientesOverviewController implements Initializable{
 		    TableRow<Cliente> row = new TableRow<>();
 		    row.setOnMouseClicked(event -> {
 		    	Cliente cliente = row.getItem();
-		    	setCurrentCliente(cliente);
+		    	if(cliente != null) {
+					setCurrentCliente(cliente);
+				}
 		    });
 		    return row ;
 		});

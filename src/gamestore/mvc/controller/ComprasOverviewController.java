@@ -130,7 +130,10 @@ public class ComprasOverviewController implements Initializable{
 			TableRow<Compra> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
 				Compra compra = row.getItem();
-				setCurrentCompra(compra);
+
+				if(compra != null) {
+					setCurrentCompra(compra);
+				}
 			});
 			return row;
 		});
