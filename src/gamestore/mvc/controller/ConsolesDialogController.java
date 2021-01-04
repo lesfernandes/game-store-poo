@@ -1,55 +1,83 @@
 package gamestore.mvc.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import gamestore.mvc.model.dao.implementation.MysqlConsoleDAO;
 import gamestore.mvc.model.dao.interfaces.IConsoleDAO;
 import gamestore.mvc.model.pojo.Console;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
-public class ConsolesDialogController implements Initializable {
+public class ConsolesDialogController {
 
-	@FXML
-	TextField nomeInput;
+    @FXML
+    private Button salvarBtn;
 
-	@FXML
-	TextField descricaoInput;
+    @FXML
+    private TextField nomeInput;
 
-	@FXML
-	TextField precoInput;
+    @FXML
+    private TextField descricaoInput;
 
-	@FXML
-	TextField tipoDriveInput;
+    @FXML
+    private TextField precoInput;
 
-	@FXML
-	TextField outrasInformacoesInput;
+    @FXML
+    private TextField tipoDriveInput;
 
-	@FXML
-	Button cancelarBtn;
+    @FXML
+    private TextField outrasInformacoesInput;
 
-	@FXML
-	Button salvarBtn;
+    private Stage dialogStage;
+  	private Console currentItem = null;
+  	private IConsoleDAO dao = new MysqlConsoleDAO();
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+      @FXML
+      void handleCancelar(ActionEvent event) {
+      	dialogStage.close();
+      }
 
-		salvarBtn.setOnAction((ActionEvent event)->{
-			Console console = new Console(nomeInput.getText(),
-										descricaoInput.getText(),
-										Float.parseFloat(precoInput.getText()),
-										tipoDriveInput.getText(),
-										outrasInformacoesInput.getText());
+      @FXML
+      void handleSalvar(ActionEvent event) {
+      	String nome = nomeInput.getText();
+  		String descricao = descricaoInput.getText();
+  		Float preco = Float.parseFloat(precoInput.getText());
+  		String tipoDrive = tipoDriveInput.getText();
+  		String outrasInformacoes = outrasInformacoesInput.getText();
 
-			IConsoleDAO dao = new MysqlConsoleDAO();
-			dao.save(console);
-		}
-	);
+  		if (this.currentItem == null) {
+  			this.currentItem = new Console(nome, descricao, preco, tipoDrive, outrasInformacoes);
+  			dao.save(this.currentItem);
+  		} else {
+  			this.currentItem
+  			.setTipoDrive(tipoDrive)
+  			.setOutrasInformacoes(outrasInformacoes)
+  			.setDescricao(descricao)
+  			.setPreco(preco)
+  			.setNome(nome);
+  			
+  			dao.update(this.currentItem);
+  		}
 
-	}
+  		dialogStage.close();
+      }
+
+      public void setConsole(Console console) {
+      	if(console != null) {
+      		this.currentItem = console;
+      		
+      		nomeInput.setText(this.currentItem.getNome());
+      		descricaoInput.setText(this.currentItem.getDescricao());
+      		precoInput.setText(String.valueOf(this.currentItem.getPreco()));
+      		tipoDriveInput.setText(this.currentItem.getTipoDrive());
+      		outrasInformacoesInput.setText(this.currentItem.getOutrasInformacoes());
+      	}
+  	}
+
+  	public void setDialogStage(Stage dialogStage) {
+  		this.dialogStage = dialogStage;
+  	}
+
 
 }
