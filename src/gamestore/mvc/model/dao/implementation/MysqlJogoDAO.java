@@ -9,8 +9,6 @@ import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
-import com.mysql.jdbc.Statement;
-
 import gamestore.mvc.model.dao.factories.MysqlFactory;
 import gamestore.mvc.model.dao.interfaces.IJogoDAO;
 import gamestore.mvc.model.pojo.Jogo;
@@ -113,8 +111,7 @@ public class MysqlJogoDAO implements IJogoDAO{
 				produtoId = rs.getInt(1);
 			}
 
-			sql = "INSERT INTO `jogos` (`memoria_necessaria`, `numero_de_jogadores`, `outras_informacoes`, `produto_id`) " +
-					"VALUES (?,?,?,?);";
+			sql = "INSERT INTO `jogos` (`memoria_necessaria`, `numero_de_jogadores`, `outras_informacoes`, `produto_id`) VALUES (?,?,?,?);";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, j.getMemoriaNecessaria());
 			pstmt.setInt(2, j.getNumeroDeJogadores());
@@ -159,7 +156,7 @@ public class MysqlJogoDAO implements IJogoDAO{
 			MysqlProdutoDAO produtoDao = new MysqlProdutoDAO();
 			produtoDao.update(j);
 
-			String sql = "UPDATE `jogos` SET `memoria_necessaria` = ?, `numero_de_jogadores` = '?', `outras_informacoes` = ? WHERE (`jogo_id` = ?);";
+			String sql = "UPDATE `jogos` SET `memoria_necessaria` = ?, `numero_de_jogadores` = ?, `outras_informacoes` = ? WHERE `jogo_id` = ?;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, j.getMemoriaNecessaria());
