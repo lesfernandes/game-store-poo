@@ -149,7 +149,7 @@ public class MysqlCompraDAO implements ICompraDAO {
 		try {
 			Connection con = MysqlFactory.getConnection();
 
-			String sql = "UPDATE `compras` SET `data` = ?, `outras_informacoes` = ?, WHERE (`compra_id` = ?);";
+			String sql = "UPDATE `compras` SET `data` = ?, `outras_informacoes` = ? WHERE `compra_id` = ?;";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setDate(1, Date.valueOf(t.getData()));

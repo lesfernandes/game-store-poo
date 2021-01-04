@@ -74,4 +74,12 @@ public class Cliente {
 		this.outrasInformacoes = outrasInformacoes;
 		return this;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Cliente [codigo=" + codigo + ", nome=" + nome + "]";
+	}
+
+
 }

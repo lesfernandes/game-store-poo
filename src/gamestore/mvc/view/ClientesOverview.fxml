@@ -38,17 +38,21 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label fx:id="codigoLabel" text="Código do cliente" />
-                        <Label fx:id="nomeLabel" text="Nome completo" GridPane.rowIndex="1" />
-                        <Label fx:id="enderecoLabel" text="Endereço" GridPane.rowIndex="2" />
-                        <Label fx:id="outrasInformacoesLabel" text="Outras informações" GridPane.rowIndex="3" />
+                        <Label text="Código do cliente" />
+                        <Label text="Nome completo" GridPane.rowIndex="1" />
+                        <Label text="Endereço" GridPane.rowIndex="2" />
+                        <Label text="Outras informações" GridPane.rowIndex="3" />
+                        <Label fx:id="codigoLabel" layoutX="10.0" layoutY="17.0" GridPane.columnIndex="1" />
+                        <Label fx:id="nomeLabel" layoutX="214.0" layoutY="17.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="enderecoLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="outrasInformacoesLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                   <HBox layoutX="5.0" layoutY="174.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
                      <children>
-                        <Button layoutX="5.0" layoutY="174.0" mnemonicParsing="false" text="Novo" />
-                        <Button mnemonicParsing="false" text="Editar" />
-                        <Button mnemonicParsing="false" onAction="#handleDeleteCliente" text="Excluir" />
+                        <Button layoutX="5.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleNovo" text="Novo" />
+                        <Button mnemonicParsing="false" onAction="#handleEditar" text="Editar" />
+                        <Button mnemonicParsing="false" onAction="#handleExcluir" text="Excluir" />
                      </children>
                   </HBox>
                </children>

@@ -1,6 +1,7 @@
 package gamestore.mvc.controller;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import gamestore.mvc.model.pojo.Produto;
@@ -19,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ComboBox;
 
@@ -45,21 +47,44 @@ public class ComprasDialogController implements Initializable{
 	private ObservableList<Produto> produtos;
 	private ObservableList<Cliente> clientes;
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		loadProdutos();
-		loadClientes();
+	private Stage dialogStage;
+	private Compra compra = null;
+	private ICompraDAO dao = new MysqlCompraDAO();
 
-		salvarBtn.setOnAction((ActionEvent event)->{
-			Compra compra = new Compra(dataInput.getValue(),
-										outrasInformacoesInput.getText(),
-										produtoInput.getValue(),
-										clienteInput.getValue());
+	@FXML
+	void handleCancelar(ActionEvent event) {
+		dialogStage.close();
+	}
 
-			ICompraDAO dao = new MysqlCompraDAO();
-			dao.save(compra);
-		});
+	@FXML
+	void handleSalvar(ActionEvent event) {
+		LocalDate data = dataInput.getValue();
+		String outrasInformacoes = outrasInformacoesInput.getText();
+		Produto produto = produtoInput.getValue();
+		Cliente cliente = clienteInput.getValue();
 
+		if(this.compra == null) {
+			this.compra = new Compra(data, outrasInformacoes, produto, cliente);
+			dao.save(this.compra);
+		} else {
+			this.compra.setData(data).setOutrasInformacoes(outrasInformacoes).setProduto(produto).setCliente(cliente);
+			dao.update(this.compra);
+		}
+
+		dialogStage.close();
+	}
+
+	public void setCompra(Compra compra) {
+		this.compra = compra;
+
+		dataInput.setValue(this.compra.getData());
+		outrasInformacoesInput.setText(this.compra.getOutrasInformacoes());
+		produtoInput.setValue(this.compra.getProduto());
+		clienteInput.setValue(this.compra.getCliente());
+	}
+
+	public void setDialogStage(Stage dialogStage) {
+		this.dialogStage = dialogStage;
 	}
 
 	public void loadProdutos() {
@@ -74,6 +99,12 @@ public class ComprasDialogController implements Initializable{
 		clientes = FXCollections.observableArrayList(dao.getAll());
 
 		clienteInput.setItems(clientes);
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		loadProdutos();
+		loadClientes();
 	}
 
 }

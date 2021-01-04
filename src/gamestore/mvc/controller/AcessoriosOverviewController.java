@@ -62,7 +62,7 @@ public class AcessoriosOverviewController implements Initializable{
 
 			// Cria o palco dialogStage.
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Edit Person");
+			dialogStage.setTitle("Editar Acessório");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			Scene scene = new Scene(page);
 			dialogStage.setScene(scene);
@@ -100,7 +100,7 @@ public class AcessoriosOverviewController implements Initializable{
 
 			// Cria o palco dialogStage.
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Edit Person");
+			dialogStage.setTitle("Novo Acessório");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			// dialogStage.initOwner(primaryStage);
 			Scene scene = new Scene(page);

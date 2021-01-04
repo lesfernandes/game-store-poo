@@ -9,8 +9,6 @@ import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
-import com.mysql.jdbc.Statement;
-
 import gamestore.mvc.model.dao.factories.MysqlFactory;
 import gamestore.mvc.model.dao.interfaces.IConsoleDAO;
 import gamestore.mvc.model.pojo.Console;
